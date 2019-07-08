@@ -210,6 +210,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\sweetalert2.min.css" />
     <Content Include="dashboard.aspx" />
+    <Content Include="employee.aspx" />
     <Content Include="employees.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -236,6 +237,7 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\validator.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\employee.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
@@ -419,6 +421,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="employee.aspx.cs">
+      <DependentUpon>employee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="employee.aspx.designer.cs">
+      <DependentUpon>employee.aspx</DependentUpon>
     </Compile>
     <Compile Include="employees.aspx.cs">
       <DependentUpon>employees.aspx</DependentUpon>

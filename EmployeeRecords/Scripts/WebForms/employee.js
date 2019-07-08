@@ -27,6 +27,7 @@ function get() {
                 var statusAction = isActive == "Not Activated" ? inactive : active;
 
                 var html = "<tr>" +
+                           "<td>" + item.ID + "</td>" +
                            "<td>" + item.EmployeeNumber + "</td>" +
                            "<td><img class='img-responsive' src=\"Content/img/29-512.png\"/></td>" +
                            "<td>" + item.FirstName + " " + item.LastName + "</td>" +
@@ -36,10 +37,10 @@ function get() {
                            "<td>" + item.Gender + "</td>" +
                            "<td>" + isActive + "</td>" +
                            "<td>" +
-                               "<i data-id=\"" + item.ID + "\" class=\"fa fa-search view\" data-toggle='modal' data-target='#view-modal'> " +
+                               "<i data-id=\"" + item.ID + "\" class=\"fa fa-search view\" data-toggle='modal' data-target='#view-modal' data-backdrop='static' data-keyboard='false'> " +
                                    //"<span class=\"tooltiptext\">Click to view details</span>" +
                                "</i>";
-                html += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit edit\" data-toggle='modal' data-target='#edit-modal'>" +
+                html += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit edit\" data-toggle='modal' data-target='#edit-modal' data-backdrop='static' data-keyboard='false'>" +
                         //"<span class=\"tooltiptext\">Click to modify details</span>" +
                     "</i>";
 
@@ -121,8 +122,8 @@ function get() {
 $(document).on('click', '#save', function (e) {
     e.preventDefault();
 
-    //if (isInputValid()) {
-        //$('.fa-spin').removeClass('hidden');
+    if (isInputValid()) {
+        $('.fa-spin').removeClass('hidden');
 
     (new http).post("employees.aspx/insert", {
 
@@ -142,10 +143,14 @@ $(document).on('click', '#save', function (e) {
             employeestatus: $('#employeestatus').val(),
             role: $('#role').val()
             //image: $('#ContentPlaceHolder1_image').val().split('\\')[$('#ContentPlaceHolder1_image').val().split('\\').length - 1]
-        }).then(function (response) {
-            $('#ContentPlaceHolder1_upload').trigger('click');
+    }).then(function (response) {
+        swal('Successfully Added!', 'Employee has been added', 'success');
+        $('.close').trigger('click');
+        get();
+
+        $('.modal .form-control').val('');
         }).run();
-    //}
+    }
 });
 
 $(document).on('click', '.view', function () {
@@ -174,6 +179,10 @@ $(document).on('click', '.view', function () {
         $('#role-view').val(item.RoleID);
         $('#full-name-view').val(item.FirstName + " " + item.MI + " " + item.LastName);
         $('#view-modal .form-control').prop('disabled', true);
+
+        var url = '/employee?_rlmswhk=' + id;
+
+        $('.more-employee-info').attr('href', url);
     }).run();
 });
 
@@ -200,15 +209,15 @@ $(document).on('click', '.edit', function () {
         $('#civilstatus-edit').val(item.CivilStatus);
         $('#employeestatus-edit').val(item.EmployeeStatusID);
         $('#role-edit').val(item.RoleID);
-
+        
     }).run();
 });
 
 $(document).on('click', '#saveChanges', function (e) {
     e.preventDefault();
 
-    //if (isInputEditValid()) {
-        //$('.fa-spin').removeClass('hidden');
+    if (isInputEditValid()) {
+    $('.fa-spin').removeClass('hidden');
 
         (new http).post("employees.aspx/update", {
             id: id,
@@ -228,16 +237,20 @@ $(document).on('click', '#saveChanges', function (e) {
             role: $('#role-edit').val()
             //image: $('#imageLabel').text()
         }).then(function (response) {
-            if ($('#ContentPlaceHolder1_imageEdit').val() != '') {
-                $('#ContentPlaceHolder1_uploadChanges').trigger('click');
-            } else {
-                swal('Successfully Updated!', 'Instructor has been successfully updated.', 'success');
-                get();
-                $('.fa-spin').addClass('hidden');
-                $('.close').click();
-            }
+            //if ($('#ContentPlaceHolder1_imageEdit').val() != '') {
+            //    $('#ContentPlaceHolder1_uploadChanges').trigger('click');
+            //} else {
+            //    swal('Successfully Updated!', 'Instructor has been successfully updated.', 'success');
+            //    get();
+            //    $('.fa-spin').addClass('hidden');
+            //    $('.close').click();
+        
+            //}
+            swal('Successfully updated!', 'Employee has been updated', 'success');
+            $('.close').trigger('click');
+            get();
         }).run();
-    //}
+    }
 
 });
 
@@ -292,25 +305,47 @@ $(document).on('click', '.activate', function () {
 });
 
 function isInputValid() {
-    var isFirstValid = $("#fname").validate(['required']).displayErrorOn($("#errorFname"));
-    var isLastValid = $("#lname").validate(['required']).displayErrorOn($("#errorLname"));
-    var isEmailValid = $("#email").validate(['email']).displayErrorOn($("#errorEmail"));
-    var isPasswordValid = $("#password").validate(['required']).displayErrorOn($("#errorPassword"));
-    var isAddressValid = $("#address").validate(['required']).displayErrorOn($("#errorAddress"));
-    var isContactValid = $("#contact").validate(['required']).displayErrorOn($("#errorContact"));
-    var isImageValid = $("#ContentPlaceHolder1_image").validate(['required']).displayErrorOn($("#errorImage"));
+    var isFirstValid = $("#first-name").validate(['required']).displayErrorOn($("#error-first-name"));
+    var isLastValid = $("#last-name").validate(['required']).displayErrorOn($("#error-last-name"));
+    var isMIValid = $("#MI").validate(['required']).displayErrorOn($("#error-MI"));
+    var isEmailValid = $("#email").validate(['email']).displayErrorOn($("#error-email"));
+    var isPasswordValid = $("#password").validate(['required']).displayErrorOn($("#error-password"));
+    var isContactValid = $("#contact").validate(['required']).displayErrorOn($("#error-contactnumber"));
+    var isAddressValid = $("#address").validate(['required']).displayErrorOn($("#error-address"));
+    var isGenderValid = $("#gender").validate(['required']).displayErrorOn($("#error-gender"));
+    var isBirthdayValid = $("#birthday").validate(['required']).displayErrorOn($("#error-birthday"));
+    var isReligionValid = $("#religion").validate(['required']).displayErrorOn($("#error-religion"));
+    var isNationalityValid = $("#nationality").validate(['required']).displayErrorOn($("#error-nationality"));
+    var isBirthplaceValid = $("#birthplace").validate(['required']).displayErrorOn($("#error-birthplace"));
+    var isCivilStatusValid = $("#civilstatus").validate(['required']).displayErrorOn($("#error-civilstatus"));
+    var isEmployeeStatusValid = $("#employeestatus").validate(['required']).displayErrorOn($("#error-employeestatus"));
+    var isRoleValid = $("#role").validate(['required']).displayErrorOn($("#error-role"));
+ 
+    //var isImageValid = $("#ContentPlaceHolder1_image").validate(['required']).displayErrorOn($("#errorImage"));
 
-    return isFirstValid && isLastValid && isEmailValid && isPasswordValid && isImageValid && isAddressValid && isContactValid;
+    return isFirstValid && isLastValid && isMIValid && isEmailValid && isPasswordValid && isContactValid && isAddressValid && isGenderValid &&
+           isBirthdayValid && isReligionValid && isNationalityValid && isBirthplaceValid && isCivilStatusValid && isEmployeeStatusValid && isRoleValid;
 }
 
 function isInputEditValid() {
-    var isFirstValid = $("#fnameEdit").validate(['required']).displayErrorOn($("#errorFnameEdit"));
-    var isLastValid = $("#lnameEdit").validate(['required']).displayErrorOn($("#errorLnameEdit"));
-    var isEmailValid = $("#emailEdit").validate(['email']).displayErrorOn($("#errorEmailEdit"));
-    var isAddressValid = $("#addressEdit").validate(['required']).displayErrorOn($("#errorAddressEdit"));
-    var isContactValid = $("#contactEdit").validate(['required']).displayErrorOn($("#errorContactEdit"));
+    var isFirstValid = $("#first-name-edit").validate(['required']).displayErrorOn($("#error-first-name-edit"));
+    var isLastValid = $("#last-name-edit").validate(['required']).displayErrorOn($("#error-last-name-edit"));
+    var isMIValid = $("#MI-edit").validate(['required']).displayErrorOn($("#error-MI-edit"));
+    var isEmailValid = $("#email-edit").validate(['email']).displayErrorOn($("#error-email-edit"));
+    //var isPasswordValid = $("#password").validate(['required']).displayErrorOn($("#error-password"));
+    var isContactValid = $("#contact-edit").validate(['required']).displayErrorOn($("#error-contactnumber-edit"));
+    var isAddressValid = $("#address-edit").validate(['required']).displayErrorOn($("#error-address-edit"));
+    var isGenderValid = $("#gender-edit").validate(['required']).displayErrorOn($("#error-gender-edit"));
+    var isBirthdayValid = $("#birthday-edit").validate(['required']).displayErrorOn($("#error-birthday-edit"));
+    var isReligionValid = $("#religion-edit").validate(['required']).displayErrorOn($("#error-religion-edit"));
+    var isNationalityValid = $("#nationality-edit").validate(['required']).displayErrorOn($("#error-nationality-edit"));
+    var isBirthplaceValid = $("#birthplace-edit").validate(['required']).displayErrorOn($("#error-birthplace-edit"));
+    var isCivilStatusValid = $("#civilstatus-edit").validate(['required']).displayErrorOn($("#error-civilstatus-edit"));
+    var isEmployeeStatusValid = $("#employeestatus-edit").validate(['required']).displayErrorOn($("#error-employeestatus-edit"));
+    var isRoleValid = $("#role-edit").validate(['required']).displayErrorOn($("#error-role-edit"));
 
-    return isFirstValid && isLastValid && isEmailValid && isAddressValid && isContactValid;
+    return isFirstValid && isLastValid && isMIValid && isEmailValid && isContactValid && isAddressValid && isGenderValid &&
+       isBirthdayValid && isReligionValid && isNationalityValid && isBirthplaceValid && isCivilStatusValid && isEmployeeStatusValid && isRoleValid;
 }
 
 //Get Employee Benefits
@@ -355,3 +390,66 @@ $(document).on('change', '#ContentPlaceHolder1_imageEdit', function (e) {
 
     $('#imageLabel').text($('#ContentPlaceHolder1_imageEdit').val().split('\\')[$('#ContentPlaceHolder1_imageEdit').val().split('\\').length - 1]);
 });
+
+//search
+$(document).ready(function () {
+    $("#myInput").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#tbody tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+});
+
+
+
+//add
+$(function () {
+    $('#birthday').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+});
+//edit
+$(function () {
+    $('#birthday-edit').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+});
+
+function find(emp_id) {
+
+    (new http).post("employees.aspx/find", {
+        id: emp_id
+    }).then(function (response) {
+        var item = response.d[0];
+
+        $('#hired-view').text(item.EmployeeNumber);
+        //$('#first-name-view').val(item.FirstName);
+        //$('#last-name-view').val(item.LastName);
+        //$('#MI-view').val(item.MI);
+        //$('#contact-view').val(item.Contact);
+        //$('#email-view').val(item.Email);
+        ////$('#imageLabelView').text(item.ImagePath);
+        //$('#password-view').val(item.Password);
+        //$('#address-view').val(item.Address);
+        //$('#birthday-view').val(item.Birthday);
+        //$('#gender-view').val(item.Gender);
+        //$('#religion-view').val(item.Religion);
+        //$('#nationality-view').val(item.Nationality);
+        //$('#birthplace-view').val(item.Birthplace);
+        //$('#civilstatus-view').val(item.CivilStatus);
+        //$('#employeestatus-view').val(item.EmployeeStatusID);
+        //$('#role-view').val(item.RoleID);
+        //$('#full-name-view').val(item.FirstName + " " + item.MI + " " + item.LastName);
+        //$('#view-modal .form-control').prop('disabled', true);
+
+        //var url = '/employee?_rlmswhk=' + id;
+
+        //$('.more-employee-info').attr('href', url);
+    }).run();
+}
+
+
+$('#myModal').modal({ backdrop: 'static', keyboard: false })
+$('#edit-modal').modal({ backdrop: 'static', keyboard: false })
+$('#view-modal').modal({ backdrop: 'static', keyboard: false })

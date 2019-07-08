@@ -10,3 +10,4 @@
 /// <reference path="moment.js" />
 /// <reference path="respond.js" />
 /// <reference path="sweetalert2.min.js" />
+/// <reference path="validator.js" />

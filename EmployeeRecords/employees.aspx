@@ -8,7 +8,7 @@
           </div>
            <%--Second row BUTTONS--%>
           <div>        
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add New Employee</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"  data-backdrop="static" data-keyboard="false">Add New Employee</button>
               <button type="button" class="btn btn-primary">Import Excel</button>
           </div>
             <table class="table table-striped">
@@ -27,14 +27,15 @@
                             <th scope="col"></th>
                                 <th scope="col">
                                     <label>Search:
-                                        <input type="search" class="" placeholder="" aria-controls="myTable">
+                                        <input type="text"  id="myInput" class="" placeholder="Search.." aria-controls="myTable">
                                     </label></th>        
                     </tr>
                 </thead>
             </table>
         <table class="table table-hover" id="tbl">
             <thead>
-                <tr>
+                <tr> 
+                    <th>No.</th>
                     <th>Employee Number</th>
                     <th>Profile Picture</th>
                     <th>Name</th>
@@ -94,49 +95,63 @@
                                         </div>
                                 </div>  
                             </div>
-                                <div class="col-md-4"></div>  
-                                    <div class="col-md-6">
-                                        <label>First Name:</label>
-                                        <input class="form-control" id="first-name" type="text">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Last Name:</label>
-                                        <input class="form-control" id="last-name" type="text"/>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Middle Initial:</label>
-                                        <input class="form-control" id="MI" type="text">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Email:</label>
-                                        <input class="form-control" id="email" type="text">
-                                    </div>
+                            </div>
+                            <div class="row">     
+                                <div class="col-md-6">
+                                    <label>First Name:</label>
+                                    <input class="form-control" id="first-name" type="text" data-name="First Name">
+                                    <label id="error-first-name" class="text-danger" style="display:none"></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Last Name:</label>
+                                    <input class="form-control" id="last-name" type="text" data-name="Last Name"/>
+                                    <label id="error-last-name" class="text-danger" style="display:none"></label>
+                                </div>
+                             </div>
+                             <div class="row">
+                                <div class="col-md-6">
+                                    <label>Middle Initial:</label>
+                                    <input class="form-control" id="MI" type="text" data-name="Middle Initial">
+                                    <label id="error-MI" class="text-danger" style="display:none"></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Email:</label>
+                                    <input class="form-control" id="email" type="text">
+                                   <label id="error-email" class="text-danger" style="display:none"></label>
+                                </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-6">
                                         <label>Password:</label>
-                                        <input class="form-control" id="password" type="password">
+                                        <input class="form-control" id="password" type="password" data-name="Password">
+                                        <label id="error-password" class="text-danger" style="display:none"></label>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Contact Number:</label>
-                                        <input class="form-control" id="contact" type="text">
+                                        <input class="form-control" id="contact" type="text" data-name="Contact Number">
+                                        <label id="error-contactnumber" class="text-danger" style="display:none"></label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label>Address:</label>
-                                        <input class="form-control" id="address" type="text">
+                                        <input class="form-control" id="address" type="text" data-name="Address">
+                                        <label id="error-address" class="text-danger" style="display:none"></label>
                                     </div> 
                                 </div>                      
                                 <div class="row">
                                     <div class="col-md-6">
                                             <label>Gender</label>
-                                            <select class="form-control" id="gender">
+                                            <select class="form-control" id="gender" data-name="Gender">
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
                                             </select>
+                                            <label id="error-gender" class="text-danger" style="display:none"></label>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Birthday:</label>
-                                        <input class="form-control" id="birthday" type="text">
+                                        <input class="form-control" id="birthday" type="text" data-name="Birthday">
+                                        <label id="error-birthday" class="text-danger" style="display:none"></label>
                                         <%--<div class="form-group">
                                             <div class="input-group date" id="birthday">
                                                 <input type="text" class="form-control" />
@@ -146,51 +161,61 @@
                                             </div>
                                         </div>--%>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-6">
                                         <label>Religion:</label>
-                                        <input class="form-control" id="religion" type="text">
+                                        <input class="form-control" id="religion" type="text" data-name="Religion">
+                                        <label id="error-religion" class="text-danger" style="display:none"></label>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Nationality:</label>
-                                        <input class="form-control" id="nationality" type="text">
+                                        <input class="form-control" id="nationality" type="text" data-name="Nationality">
+                                        <label id="error-nationality" class="text-danger" style="display:none"></label>
                                     </div>
-                                    </div>
+                                  </div>  
                                     <div class="row">
                                         <div class="col-md-6">
                                                 <label>Birthplace:</label>
-                                                <input class="form-control" id="birthplace" type="text">
+                                                <input class="form-control" id="birthplace" type="text"  data-name="Birthplace">
+                                                <label id="error-birthplace" class="text-danger" style="display:none"></label>
                                             </div>
                                             <div class="col-md-6">
                                                 <label>Civil Status:</label>
-                                                <select class="form-control" id="civilstatus">
+                                                <select class="form-control" id="civilstatus" data-name="Civil Status">
                                                     <option value="Single">Single</option>
                                                     <option value="Married">Married</option>
                                                     <option value="Widowed">Widowed</option>
                                                     <option value="Complicated">Widowed</option>
                                                 </select>
+                                                <label id="error-civilstatus" class="text-danger" style="display:none"></label>
                                             </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <label>Employees Status:</label>
-                                                <select class="form-control" id="employeestatus">
+                                                <select class="form-control" id="employeestatus" data-name="Civil Status">
                                                     <option value="1">Hired</option>
                                                     <option value="2">Rejected</option>
                                                     <option value="3">Terminated</option>
                                                     <option value="4">Applicant</option>
                                                 </select>
+                                                <label id="error-employeestatus" class="text-danger" style="display:none"></label>
                                             </div>
                                             <div class="col-md-6">
                                                 <label>Role:</label>
-                                                <select class="form-control" id="role">
+                                                <select class="form-control" id="role" data-name="Role">
                                                     <option value="1">Admin</option>
                                                     <option value="2">Supervisor</option>
                                                     <option value="3">Staff</option>
                                                     <option value="4">Employee</option>
                                                 </select>
+                                                <label id="error-role" class="text-danger" style="display:none"></label>
                                             </div>
-                                      </div>      
+                                          </div> 
                                 </div>                         
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal" id="save" value="Submit">Create Employee</button>
+                                    <button type="button" class="btn btn-default" id="save" >Create Employee</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
             </div>
@@ -200,7 +225,7 @@
 <%--End of modal--%>
 
 
-<%--EDIT EMPLOYEE MODAL--%>
+<%-- EDIT EMPLOYEE MODAL--%>
 <!-- Modal -->
 <div class="modal fade" id="edit-modal" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -209,7 +234,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Edit Employee</h4>
+                    <h4 class="modal-title">Modify Employee</h4>
                 </div>
                     <div class="modal-body">
                         <div class="row">
@@ -229,107 +254,129 @@
                                         </div>
                                 </div>  
                             </div>
-                                <div class="col-md-4"></div>  
-                                    <div class="col-md-6">
-                                        <label>First Name:</label>
-                                        <input class="form-control" id="first-name-edit" type="text">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Last Name:</label>
-                                        <input class="form-control" id="last-name-edit" type="text">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Middle Initial:</label>
-                                        <input class="form-control" id="MI-edit" type="text">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Email:</label>
-                                        <input class="form-control" id="email-edit" type="text">
-                                    </div>
-        <%--                            <div class="col-md-6">
+                            </div>
+                            <div class="row">     
+                                <div class="col-md-6">
+                                    <label>First Name:</label>
+                                    <input class="form-control" id="first-name-edit" type="text" data-name="First Name">
+                                    <label id="error-first-name-edit" class="text-danger" style="display:none"></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Last Name:</label>
+                                    <input class="form-control" id="last-name-edit" type="text" data-name="Last Name">
+                                    <label id="error-last-name-edit" class="text-danger" style="display:none"></label>
+                                </div>
+                             </div>
+                             <div class="row">
+                                <div class="col-md-6">
+                                    <label>Middle Initial:</label>
+                                    <input class="form-control" id="MI-edit" type="text" data-name="Middle Initial">
+                                    <label id="error-MI-edit" class="text-danger" style="display:none"></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Email:</label>
+                                    <input class="form-control" id="email-edit" type="text" data-name="Email">
+                                    <label id="error-email-edit" class="text-danger" style="display:none"></label>
+                                </div>
+                                </div>
+                                <div class="row">
+                                   <%-- <div class="col-md-6">
                                         <label>Password:</label>
-                                        <input class="form-control" id="password-view" type="password">
+                                        <input class="form-control" id="password-edit" type="password">
                                     </div>--%>
                                     <div class="col-md-6">
                                         <label>Contact Number:</label>
-                                        <input class="form-control" id="contact-edit" type="text">
+                                        <input class="form-control" id="contact-edit" type="text" data-name="Contact Number">
+                                        <label id="error-contactnumber-edit" class="text-danger" style="display:none"></label>
                                     </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>Address:</label>
-                                <input class="form-control" id="address-edit" type="text">
-                            </div> 
-                        </div>                      
-                        <div class="row">
-                            <div class="col-md-6">
-                                    <label>Gender</label>
-                                    <select class="form-control" id="gender-edit">
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </select> 
-                            </div>
-                        <div class="col-md-6">
-                            <label>Birthday:</label>
-                            <input class="form-control" id="birthday-edit" type="text">
-                            <%--<div class="form-group">
-                                <div class="input-group date" id="birthday">
-                                    <input type="text" class="form-control" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
                                 </div>
-                            </div>--%>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Religion:</label>
-                            <input class="form-control" id="religion-edit" type="text">
-                        </div>
-                        <div class="col-md-6">
-                            <label>Nationality:</label>
-                            <input class="form-control" id="nationality-edit" type="text">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                                <label>Birthplace:</label>
-                                <input class="form-control" id="birthplace-edit" type="text">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Civil Status:</label>
-                                <select class="form-control" id="civilstatus-edit">
-                                    <option value="Single">Single</option>
-                                    <option value="Married">Married</option>
-                                    <option value="Widowed">Widowed</option>
-                                    <option value="Complicated">Widowed</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label>Employees Status:</label>
-                                <select class="form-control" id="employeestatus-edit">
-                                    <option value="1">Hired</option>
-                                    <option value="2">Rejected</option>
-                                    <option value="3">Terminated</option>
-                                    <option value="4">Applicant</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label>Role:</label>
-                                <select class="form-control" id="role-edit">
-                                    <option value="1">Admin</option>
-                                    <option value="2">Supervisor</option>
-                                    <option value="3">Staff</option>
-                                    <option value="4">Employee</option>
-                                </select>
-                            </div>
-                      </div>      
-                </div>                         
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" id="saveChanges" value="Submit">Update Employee</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Address:</label>
+                                        <input class="form-control" id="address-edit" type="text" data-name="Address">
+                                        <label id="error-address-edit" class="text-danger" style="display:none"></label>
+                                    </div> 
+                                </div>                      
+                                <div class="row">
+                                    <div class="col-md-6">
+                                            <label>Gender</label>
+                                            <select class="form-control" id="gender-edit" data-name="Gender">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                            <label id="error-gender-edit" class="text-danger" style="display:none"></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Birthday:</label>
+                                        <input class="form-control" id="birthday-edit" type="text" data-name="Birthday">
+                                        <label id="error-birthday-edit" class="text-danger" style="display:none"></label>
+                                        <%--<div class="form-group">
+                                            <div class="input-group date" id="birthday">
+                                                <input type="text" class="form-control" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>--%>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Religion:</label>
+                                        <input class="form-control" id="religion-edit" type="text" data-name="Religion">
+                                        <label id="error-religion-edit" class="text-danger" style="display:none"></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Nationality:</label>
+                                        <input class="form-control" id="nationality-edit" type="text" data-name="Nationality">
+                                        <label id="error-nationality-edit" class="text-danger" style="display:none"></label>
+                                    </div>
+                                  </div>  
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                                <label>Birthplace:</label>
+                                                <input class="form-control" id="birthplace-edit" type="text" data-name="Birthplace">
+                                                <label id="error-birthplace-edit" class="text-danger" style="display:none"></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Civil Status:</label>
+                                                <select class="form-control" id="civilstatus-edit" data-name="Civil Status">
+                                                    <option value="Single">Single</option>
+                                                    <option value="Married">Married</option>
+                                                    <option value="Widowed">Widowed</option>
+                                                    <option value="Complicated">Widowed</option>
+                                                </select>
+                                                <label id="error-civilstatus-edit" class="text-danger" style="display:none"></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Employees Status:</label>
+                                                <select class="form-control" id="employeestatus-edit" data-name="Employee Status">
+                                                    <option value="1">Hired</option>
+                                                    <option value="2">Rejected</option>
+                                                    <option value="3">Terminated</option>
+                                                    <option value="4">Applicant</option>
+                                                </select>
+                                                <label id="error-employee-edit" class="text-danger" style="display:none"></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Role:</label>
+                                                <select class="form-control" id="role-edit" data-name="Employee Role">
+                                                    <option value="1">Admin</option>
+                                                    <option value="2">Supervisor</option>
+                                                    <option value="3">Staff</option>
+                                                    <option value="4">Employee</option>
+                                                </select>
+                                                <label id="error-role-edit" class="text-danger" style="display:none"></label>
+                                            </div>
+                                          </div> 
+                                </div>                         
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" id="saveChanges">Modify Employee</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
             </div>
-
         </form>
     </div>
 </div>
@@ -345,7 +392,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">View Employee</h4>
+                    <h4 class="modal-title">Employee info</h4>
+                    <a href="#" class="more-employee-info" target="_blank">Work related info →</a>
                 </div>
                     <div class="modal-body">
                         <div class="row">
@@ -477,18 +525,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="Scripts/WebForms/employee.js"></script>
 
-<script type="text/javascript">
-            $(function () {
-                $('#birthday').datetimepicker({
-                    format: 'DD/MM/YYYY'
-                });
-            });
-        </script>  
-<script type="text/javascript">
-            $(function () {
-                $('#birthday-edit').datetimepicker({
-                    format: 'DD/MM/YYYY'
-                });
-            });
-        </script>  
 </asp:Content>
