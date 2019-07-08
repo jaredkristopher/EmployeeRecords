@@ -208,6 +208,7 @@
     <Content Include="Content\customize.css" />
     <Content Include="Content\img\29-512.png" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\sweetalert2.min.css" />
     <Content Include="dashboard.aspx" />
     <Content Include="employees.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -273,6 +274,7 @@
     <Content Include="Site.Mobile.Master" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\sweetalert2.min.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

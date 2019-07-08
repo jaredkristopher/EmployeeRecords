@@ -32,9 +32,9 @@ function get() {
                            "<td>" + item.FirstName + " " + item.LastName + "</td>" +
                            "<td>" + item.Email + "</td>" +
                            "<td>" + item.Contact + "</td>" +
-                           //"<td>" + isActive + "</td>" +
                            "<td>" + item.Address + "</td>" +
                            "<td>" + item.Gender + "</td>" +
+                           "<td>" + isActive + "</td>" +
                            "<td>" +
                                "<i data-id=\"" + item.ID + "\" class=\"fa fa-search view\" data-toggle='modal' data-target='#view-modal'> " +
                                    //"<span class=\"tooltiptext\">Click to view details</span>" +
@@ -42,6 +42,7 @@ function get() {
                 html += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit edit\" data-toggle='modal' data-target='#edit-modal'>" +
                         //"<span class=\"tooltiptext\">Click to modify details</span>" +
                     "</i>";
+
 
                 html += statusAction;
 
@@ -247,14 +248,14 @@ $(document).on('click', '.remove', function () {
     swal({
         title: 'Are you sure you want to deactivate ' + $(this).data('name') + '?',
         text: "You won't be able to revert this action!",
-        type: 'warning',
+        icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: 'green',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Deactivate!'
     }).then(function (isConfirm) {
         if (isConfirm.value == true) {
-            (new http).post("instructors.aspx/deactivate", {
+            (new http).post("employees.aspx/deactivate", {
                 id: id,
                 name: name
             }).then(function (response) {
@@ -279,7 +280,7 @@ $(document).on('click', '.activate', function () {
         confirmButtonText: 'Activate!'
     }).then(function (isConfirm) {
         if (isConfirm.value == true) {
-            (new http).post("instructors.aspx/activate", {
+            (new http).post("employees.aspx/activate", {
                 id: id,
                 name: name
             }).then(function (response) {

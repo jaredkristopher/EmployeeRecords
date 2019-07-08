@@ -42,6 +42,7 @@
                     <th>Contact</th>
                     <th>Address</th>
                     <th>Gender</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -472,11 +473,10 @@
  
 
 
-
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="Scripts/WebForms/employee.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
 <script type="text/javascript">
             $(function () {
                 $('#birthday').datetimepicker({

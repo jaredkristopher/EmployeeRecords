@@ -9,3 +9,4 @@
 /// <reference path="modernizr-2.6.2.js" />
 /// <reference path="moment.js" />
 /// <reference path="respond.js" />
+/// <reference path="sweetalert2.min.js" />

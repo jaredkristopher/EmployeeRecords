@@ -186,6 +186,63 @@ namespace EmployeeRecords.Services
 
             return item;
         }
+        public static int deactivate(int id)
+        {
+            var item = 0;
+
+            using (var dbconn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                if (dbconn.State == ConnectionState.Open)
+                    dbconn.Close();
+                dbconn.Open();
+
+                using (var cmd = new SqlCommand("spDeactivateEmployee", dbconn))
+                {
+                    try
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("id", id);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.ToString();
+                    }
+                }
+            }
+
+            return item;
+        }
+
+        public static int activate(int id)
+        {
+            var item = 0;
+
+            using (var dbconn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                if (dbconn.State == ConnectionState.Open)
+                    dbconn.Close();
+                dbconn.Open();
+
+                using (var cmd = new SqlCommand("spActivateEmployee", dbconn))
+                {
+                    try
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("id", id);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.ToString();
+                    }
+                }
+            }
+
+            return item;
+        }
     }
 
 

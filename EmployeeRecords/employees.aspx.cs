@@ -78,5 +78,25 @@ namespace EmployeeRecords
 
             return item;
         }
+
+        [WebMethod]
+        public static int deactivate(int id)
+        {
+            var item = 0;
+
+            item = EmployeeServices.deactivate(id);
+
+            return item;
+        }
+
+        [WebMethod]
+        public static int activate(int id)
+        {
+            var item = 0;
+
+            item = EmployeeServices.activate(id);
+
+            return item;
+        }
     }
 }
