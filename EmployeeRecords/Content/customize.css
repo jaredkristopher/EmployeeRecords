@@ -6,8 +6,22 @@
     border-top: none !important;
 }
 
-.modal .col-md-6, .modal .col-md-12 {
-        margin-bottom: 2%;
+.modal .col-md-1, .modal .col-md-2, .modal .col-md-3, .modal .col-md-4, .modal .col-md-5, .modal .col-md-6, .modal .col-md-12, .modal .col-md-9 {
+        margin-bottom: 1%;
+        margin-top: 1%;
+
+}
+
+@media (min-width: 768px) {
+  .modal-xl {
+    width: 90%;
+   max-width:1200px;
+  }
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
 }
 
 @media (min-width: 768px) {
@@ -114,4 +128,10 @@
 #tbl td .img-responsive {
     width : 100px;
     height: 100px;
+}
+
+/*inline*/
+.form-group.col-md-4 {
+    display: flex;
+    align-items: center;
 }

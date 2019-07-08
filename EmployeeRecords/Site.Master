@@ -55,4 +55,5 @@
 <script src="Scripts/jquery-3.4.1.js"></script>
 <script src="Scripts/bootstrap.min.js"></script>
 <script src="Scripts/helpers.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 </html>

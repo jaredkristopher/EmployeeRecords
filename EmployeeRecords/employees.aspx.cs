@@ -29,6 +29,27 @@ namespace EmployeeRecords
         }
 
         [WebMethod]
+        public static List<EmployeeInfo> find(int id)
+        {
+            var service = new EmployeeServices();
+
+            var employees = service.find(id);
+
+            return employees;
+        }
+
+        //Get Employee Benefits
+        [WebMethod]
+        public static List<EmployeeBenefitInfo> getBenefits(int id)
+        {
+            var service = new EmployeeBenefitServices();
+
+            var employees = service.findEmpBenefits(id);
+
+            return employees;
+        }
+
+        [WebMethod]
         public static int insert(string lname, string fname, string mname, string contact,
         string email, string password, string address, string birthday, string gender,
         string religion, string nationality, string birthplace, string civilstatus,
@@ -45,5 +66,17 @@ namespace EmployeeRecords
             return item;
         }
 
+        [WebMethod]
+        public static int update(int id, string fname, string lname, string mname,
+            string contact, string email, string address, string birthday, string gender, string religion, string nationality,
+            string birthplace, string civilstatus, int employeestatus, int role)
+        {
+            var item = 0;
+
+            item = EmployeeServices.update(id, fname, lname, mname, contact, email, address, birthday, gender, religion,
+                                            nationality, birthplace, civilstatus, employeestatus, role);
+
+            return item;
+        }
     }
 }
