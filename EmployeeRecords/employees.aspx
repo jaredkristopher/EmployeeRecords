@@ -12,7 +12,7 @@
               <button type="button" id="btnExport" class="btn btn-primary" onclick="fnExcelReport();">Export Excel</button>
           </div>
             <table class="table table-striped">
-                <thead>
+                <%--<thead>
                     <tr>
                         <th scope="col">
                          <label>Show
@@ -27,10 +27,10 @@
                             <th scope="col"></th>
                                 <th scope="col">
                                     <label>Search:
-                                        <input type="text"  id="myInput" class="" placeholder="Search.." aria-controls="myTable">
+                                        <input type="text"  id="myInput" class="" placeholder="Search..." aria-controls="myTable">
                                     </label></th>        
                     </tr>
-                </thead>
+                </thead>--%>
             </table>
         <table class="table table-hover" id="tbl">
             <thead>
@@ -53,9 +53,9 @@
         </table>
     </div>
     <%--Showing of entries--%>
-    <div class="dataTables_info" id="myTable_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+<%--    <div class="dataTables_info" id="myTable_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>--%>
     <%--Pagination--%>
-<nav aria-label="Page navigation example">
+<%--<nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">
     <li class="page-item disabled">
     <a class="page-link" href="#" tabindex="-1">Previous</a>
@@ -68,7 +68,7 @@
     </li>
   </ul>
 </nav>
- 
+ --%>
 <%-- ADD EMPLOYEE MODAL--%>
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
@@ -88,11 +88,11 @@
                                     <img class='img-responsive' src="Content/img/29-512.png">
                                         <div class="avatar-upload">
                                             <div class="avatar-edit">
-                                                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-                                                <label for="imageUpload"></label>
+                                                <input type='file' id="imageUpload2" accept=".png, .jpg, .jpeg" />
+                                                <label for="imageUpload2"></label>
                                             </div>
                                             <div class="avatar-preview">
-                                                <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                                                <div id="imagePreview2" style="background-image: url(http://i.pravatar.cc/500?img=7);">
                                                 </div>
                                             </div>
                                         </div>
@@ -247,11 +247,11 @@
                                     <img class='img-responsive' src="Content/img/29-512.png">
                                         <div class="avatar-upload">
                                             <div class="avatar-edit">
-                                                <input type='file' id="imageUpload2" accept=".png, .jpg, .jpeg" />
+                                                <input type='file' id="imageUpload12" accept=".png, .jpg, .jpeg" />
                                                 <label for="imageUpload"></label>
                                             </div>
                                             <div class="avatar-preview">
-                                                <div id="imagePreview2" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                                                <div id="imagePreview12" style="background-image: url(http://i.pravatar.cc/500?img=7);">
                                                 </div>
                                             </div>
                                         </div>

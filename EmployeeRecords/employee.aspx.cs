@@ -40,11 +40,11 @@ namespace EmployeeRecords
 
         //Get Employee Benefits
         [WebMethod]
-        public static List<EmployeeBenefitInfo> getBenefits(int id)
+        public static List<EmployeeRequirementInfo> getEmployeeReq(int id)
         {
-            var service = new EmployeeBenefitServices();
+            var service = new EmployeeRequirementServices();
 
-            var employees = service.findEmpBenefits(id);
+            var employees = service.findEmpRequirements(id);
 
             return employees;
         }
@@ -61,6 +61,18 @@ namespace EmployeeRecords
         email, password, address, birthday, gender,
         religion, nationality, birthplace, civilstatus,
         employeestatus, role);
+
+
+            return item;
+        }
+
+
+        [WebMethod]
+        public static int insertEmployeeRequirements(int employeeID, int requirementID, string requirementPath, string note)
+        {
+            var item = 0;
+
+            item = EmployeeRequirementServices.insertEmployeeRequirements(employeeID, requirementID, requirementPath, note);
 
 
             return item;

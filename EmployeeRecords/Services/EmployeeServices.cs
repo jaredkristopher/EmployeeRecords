@@ -96,6 +96,8 @@ namespace EmployeeRecords.Services
             return items;
         }
 
+
+
         public static int insert(string lname, string fname, string mname, string contact,
         string email, string password, string address, string birthday, string gender,
         string religion, string nationality, string birthplace, string civilstatus, 

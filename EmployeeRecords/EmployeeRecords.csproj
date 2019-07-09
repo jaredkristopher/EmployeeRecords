@@ -439,13 +439,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Info\EmployeeBenefitInfo.cs" />
+    <Compile Include="Info\EmployeeRequirementInfo.cs" />
     <Compile Include="Info\EmployeeInfo.cs" />
     <Compile Include="Models\EmployeeBenefitModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\EmployeeRequirementModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\EmployeeBenefitServices.cs" />
+    <Compile Include="Services\EmployeeRequirementServices.cs" />
     <Compile Include="Services\EmployeeServices.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -462,7 +463,7 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="Transformers\EmployeeBenefitTransformer.cs" />
+    <Compile Include="Transformers\EmployeeRequirementTransformer.cs" />
     <Compile Include="Transformers\EmployeeTransformer.cs" />
     <Compile Include="Transformers\Transformer.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">

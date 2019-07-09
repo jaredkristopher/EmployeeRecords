@@ -40,11 +40,22 @@ namespace EmployeeRecords
 
         //Get Employee Benefits
         [WebMethod]
-        public static List<EmployeeBenefitInfo> getBenefits(int id)
+        public static List<EmployeeRequirementInfo> findRequirements(int id)
         {
-            var service = new EmployeeBenefitServices();
+            var service = new EmployeeRequirementServices();
 
-            var employees = service.findEmpBenefits(id);
+            var employees = service.findEmpRequirements(id);
+
+            return employees;
+        }
+
+        //Get Employee Benefits
+        [WebMethod]
+        public static List<EmployeeRequirementInfo> getRequirements(int id)
+        {
+            var service = new EmployeeRequirementServices();
+
+            var employees = service.getEmpRequirements(id);
 
             return employees;
         }
@@ -80,6 +91,17 @@ namespace EmployeeRecords
         }
 
         [WebMethod]
+        public static int insertEmployeeRequirements(int employeeID, int requirementID, string requirementPath, string note)
+        {
+            var item = 0;
+
+            item = EmployeeRequirementServices.insertEmployeeRequirements(employeeID, requirementID, requirementPath, note);
+
+
+            return item;
+        }
+
+        [WebMethod]
         public static int deactivate(int id)
         {
             var item = 0;
@@ -98,5 +120,28 @@ namespace EmployeeRecords
 
             return item;
         }
+
+        //Update Employee Requirements
+        [WebMethod]
+        public static int updateEmpReq(int id, int reqId, string reqPath, string note)
+        {
+            var item = 0;
+
+            item = EmployeeRequirementServices.updateEmpRequirement(id, reqId, reqPath, note);
+
+            return item;
+        }
+
+        //Deactivate Employee Requirement
+        [WebMethod]
+        public static int deactivateEmpReq(int id)
+        {
+            var item = 0;
+
+            item = EmployeeRequirementServices.deactivateEmpRequirement(id);
+
+            return item;
+        }
+
     }
 }

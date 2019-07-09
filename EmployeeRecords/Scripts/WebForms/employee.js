@@ -50,6 +50,8 @@ function get() {
                 html += "</td>" +
                "</tr>";
 
+
+               
                 $('#tbody').append(html);
                 resolve();
             });
@@ -57,7 +59,7 @@ function get() {
 
         Promise.all(items).then(function () {
             //$('.loading').remove();
-            //$('#tbl').DataTable();
+            $('#tbl').DataTable();
         });
     }).run();
 }
@@ -348,30 +350,121 @@ function isInputEditValid() {
        isBirthdayValid && isReligionValid && isNationalityValid && isBirthplaceValid && isCivilStatusValid && isEmployeeStatusValid && isRoleValid;
 }
 
-//Get Employee Benefits
-$(document).on('click', '.view', function () {
-    id = $(this).data('id');
+//Get Employee Requirements
+function getEmpReq(empId) {
+    //id = $(this).data('id');
 
-    (new http).post("employees.aspx/getBenefits", {
-        id: id
+    (new http).post("employees.aspx/getEmpRequirements ", {
+        id: empId
     }).then(function (response) {
         var items = response.d.map(item => {
-            var html = "<tr>" +
-                        "<td>" + item.Benefit + "</td>" +
-                        "<td>" + item.ID + "</td>" +
+            if (item.Status) {
+                var html = "<tr>" +
+                        "<td>" + item.Requirement + "</td>" +
+                        "<td>" + item.Note + "</td>" +
                         "<td>" +
-                            "<i data-id=\"" + item.ID + "\" class=\"fa fa-search view\" data-toggle='modal' data-target='#view-modal'> " +
+                            "<a target='_blank' href='/Content/requirements/" + item.RequirementPath + "'>" +
+                            "<i data-id=\"" + item.ID + "\" class=\"fa fa-search viewEmpReq\" data-toggle='modal' data-target='#view-req-modal'> " +
                                 //"<span class=\"tooltiptext\">Click to view details</span>" +
-                            "</i>";
-            html += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit edit\" data-toggle='modal' data-target='#editModal'>" +
-                    //"<span class=\"tooltiptext\">Click to modify details</span>" +
-                "</i>";
-            html += "</td>" +
-            "</tr>";
+                            "</i></a>";
+                html += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit editEmpReq\" data-toggle='modal' data-target='#edit-req-modal'>" +
+                        //"<span class=\"tooltiptext\">Click to modify details</span>" +
+                    "</i>";
+                html += "<i data-id=\"" + item.ID + "\" data-name=\"" + item.Requirement + "\" class=\"fa fa-remove removeEmpReq\">" +
+                   //"<span class=\"tooltiptext\">Click to deactivate</span>" +
+               "</i>";
+                html += "</td>" +
+                "</tr>";
 
-            $('#tbodyBenefits').append(html);
+                $('#tbodyRequirements').append(html);
+            }
         });
     }).run();
+};
+
+//Function for retrieving requirement for editing
+$(document).on('click', '.editEmpReq', function () {
+    id = $(this).data('id');
+
+    (new http).post("employees.aspx/findRequirements", {
+        id: id
+    }).then(function (response) {
+        var item = response.d[0];
+        $('#requirement-edit').val(item.RequirementID);
+        $('#path-edit').val(item.RequirementPath);
+        $('#note-edit').val(item.Note);
+    }).run();
+});
+
+//Function for updating employee requirement
+$(document).on('click', '#update-requirement', function (e) {
+    e.preventDefault();
+    //id = $(this).data('id');
+
+    //if (isInputEditValid()) {
+    //    $('.fa-spin').removeClass('hidden');
+
+    (new http).post("employees.aspx/updateEmpReq", {
+        id: id,
+        reqId: $('#requirement-edit').val(),
+        reqPath: $('#path-edit').val(),
+        note: $('#note-edit').val(),
+    }).then(function (response) {
+        swal('Successfully updated!', 'Requirement has been updated', 'success');
+        $('.close').trigger('click');
+        get();
+    }).run();
+    //}
+
+});
+
+//Function for deactivating employee
+$(document).on('click', '.removeEmpReq', function () {
+    id = $(this).data('id');
+    var name = $(this).data('name');
+
+    swal({
+        title: 'Are you sure you want to deactivate ' + $(this).data('name') + '?',
+        text: "You won't be able to revert this action!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'green',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Deactivate!'
+    }).then(function (isConfirm) {
+        if (isConfirm.value == true) {
+            (new http).post("employees.aspx/deactivateEmpReq", {
+                id: id,
+                name: name
+            }).then(function (response) {
+                swal('Successfully Deactivated', 'Requirement Has Been Removed!', 'success');
+                reload();
+            }).run();
+        }
+    })
+});
+
+$(document).on('click', '#save-requirement', function (e) {
+    e.preventDefault();
+
+    //if (isInputValid()) {
+    //    $('.fa-spin').removeClass('hidden');
+
+    (new http).post("employees.aspx/insertEmployeeRequirements", {
+
+        employeeID: id,
+        requirementID: $('#requirement').val(),
+        requirementPath: $('#path').val(),
+        note: $('#note').val()
+        //image: $('#ContentPlaceHolder1_image').val().split('\\')[$('#ContentPlaceHolder1_image').val().split('\\').length - 1]
+    }).then(function (response) {
+        swal('Successfully Added!', 'Employee has been added', 'success');
+        $('.close').trigger('click');
+         
+
+        $('.modal .form-control').val('');
+    }).run();
+    //}
 });
 
 $(document).on('click', '#add', function (e) {
@@ -450,19 +543,55 @@ function find(emp_id) {
 }
 
 
-$('#myModal').modal({ backdrop: 'static', keyboard: false })
-$('#edit-modal').modal({ backdrop: 'static', keyboard: false })
-$('#view-modal').modal({ backdrop: 'static', keyboard: false })
 
 
+
+function getEmployee(empId) {
+
+    (new http).post("employees.aspx/find", {
+        id: empId
+    }).then(function (response) {
+        var item = response.d[0];
+        $('#full-name').text(item.FirstName + " " + item.MI + " " + item.LastName);
+        $('#contact').text(item.Contact);
+        $('#email-address').text(item.Email);
+        $('#role').text(item.RoleStatus);
+        $('#status').text(item.EmployeeStatus);
+        if (item.EmployeeStatus === "Hired") {
+            $('#date-hired').text(item.DateHired);
+        } else {
+            $('#date-hired').text('Not hired');
+        }
+        if (item.DatedDeleted) {
+            $('#date-updated').text('Not yet updated')
+        } else {
+            $('#date-updated').text(item.DatedUpdated)
+        }
+        $('#address-view').val(item.Address);
+        $('#gender-view').val(item.Gender);
+        $('#birthday-view').val(item.Birthday);
+        $('#nationality-view').val(item.Nationality);
+        $('#religion-view').val(item.Religion);
+        $('#birthplace-view').val(item.Birthplace);
+        $('#civilstatus-view').val(item.CivilStatus);
+        if (item.DatedDeleted) {
+            $('#account-active').text('No');
+        } else {
+            $('#account-active').text('Yes');
+        }
+
+        //$('#imageLabelView').text(item.ImagePath);
+    }).run();
+}
 
 
 
 function fnExcelReport()
 {
     var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
-    var textRange; var j=0;
-    tab = document.getElementById('tbody'); // id of table
+    var textRange; var j = 0;
+
+    tab = document.getElementById('tbl'); // id of table
 
     for(j = 0 ; j < tab.rows.length ; j++) 
     {     
@@ -491,3 +620,12 @@ function fnExcelReport()
 
     return (sa);
 }
+
+//$(document).ready(function () {
+//    $('#tbl').DataTable();
+//});
+
+
+$('#myModal').modal({ backdrop: 'static', keyboard: false })
+$('#edit-modal').modal({ backdrop: 'static', keyboard: false })
+$('#view-modal').modal({ backdrop: 'static', keyboard: false })

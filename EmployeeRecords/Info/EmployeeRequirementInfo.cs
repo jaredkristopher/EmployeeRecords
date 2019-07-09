@@ -3,7 +3,7 @@
 
 namespace EmployeeRecords.Info
 {
-    public class EmployeeBenefitInfo : EmployeeBenefitModel
+    public class EmployeeRequirementInfo : EmployeeRequirementModel
     {
     }
 }
