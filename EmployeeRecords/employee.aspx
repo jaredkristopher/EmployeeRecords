@@ -62,7 +62,8 @@
         <li class="active"><a data-toggle="pill" href="#basic-info">Basic Info</a></li>
         <li><a data-toggle="pill" href="#requirements">Files and Requirements</a></li>
         <li><a data-toggle="pill" href="#attainments">Educational Attainments</a></li>
-         <li><a data-toggle="pill" href="#qualifications">Qualifications</a></li>
+        <li><a data-toggle="pill" href="#qualifications">Job Experiences</a></li>
+        <li><a data-toggle="pill" href="#references">References</a></li>
         <li><a data-toggle="pill" href="#attendance">Attendance</a></li>
     </ul>
     <div class="tab-content">
@@ -115,7 +116,7 @@
                       </div>
         </div>
         <div id="requirements" class="tab-pane fade col-md-8">
-            <button type="button" class="btn btn-space" data-toggle="modal" data-target="#add-requirement"  data-backdrop="static" data-keyboard="false">Add Requirement</button>
+            <button type="button" class="btn btn-space" data-toggle="modal" data-target="#add-requirement-modal"  data-backdrop="static" data-keyboard="false">Add Requirement</button>
             <table class="table table-hover" id="tblRequirements">
             <thead>
                 <tr> 
@@ -130,7 +131,7 @@
         </table>
         </div>
         <div id="attainments" class="tab-pane fade  col-md-8">
-            <button type="button" class="btn btn-space" data-toggle="modal" data-target="#add-attainment"  data-backdrop="static" data-keyboard="false">Add Attainment</button>
+            <button type="button" class="btn btn-space" data-toggle="modal" data-target="#add-attainment-modal"  data-backdrop="static" data-keyboard="false">Add Attainment</button>
             <table class="table table-hover" id="tblAttainments">
             <thead>
                 <tr> 
@@ -146,7 +147,7 @@
             </table>
         </div>
         <div id="qualifications" class="tab-pane fade  col-md-8">
-            <button type="button" class="btn btn-space" data-toggle="modal" data-target="#add-experience"  data-backdrop="static" data-keyboard="false">Add Job Experience</button>
+            <button type="button" class="btn btn-space" data-toggle="modal" data-target="#add-experience-modal"  data-backdrop="static" data-keyboard="false">Add Job Experience</button>
             <table class="table table-hover" id="tblExperiences">
             <thead>
                 <tr> 
@@ -161,6 +162,24 @@
             </tbody>
             </table>
         </div>
+
+         <div id="references" class="tab-pane fade  col-md-8">
+            <button type="button" class="btn btn-space" data-toggle="modal" data-target="#add-reference-modal"  data-backdrop="static" data-keyboard="false">Add Employee Reference</button>
+            <table class="table table-hover" id="tblReferences">
+            <thead>
+                <tr> 
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Occupation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyReferences">
+
+            </tbody>
+            </table>
+        </div>
+
         <div id="attendance" class="tab-pane fade">
               <h3>Menu 3</h3>
               <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
@@ -170,7 +189,7 @@
 
 <%-- ADD REQUIREMENT MODAL--%>
 <!-- Modal -->
-<div class="modal fade" id="add-requirement" role="dialog">
+<div class="modal fade" id="add-requirement-modal" role="dialog">
     <div class="modal-dialog modal-xs">
         <!-- Modal content-->
         <form id="add-req">
@@ -267,9 +286,10 @@
 <%--End of modal--%>
 
 
+
 <%-- ADD ATTAINMENT MODAL--%>
 <!-- Modal -->
-<div class="modal fade" id="add-attainment" role="dialog">
+<div class="modal fade" id="add-attainment-modal" role="dialog">
     <div class="modal-dialog modal-xs">
         <!-- Modal content-->
         <form id="add-att">
@@ -321,7 +341,7 @@
 
 <%-- ADD EXPERIENCE MODAL--%>
 <!-- Modal -->
-<div class="modal fade" id="add-experience" role="dialog">
+<div class="modal fade" id="add-experience-modal" role="dialog">
     <div class="modal-dialog modal-xs">
         <!-- Modal content-->
         <form id="add-exp">
@@ -368,19 +388,157 @@
 </div>
 <%--End of modal--%>
 
+<%-- EDIT EXPERIENCE MODAL--%>
+<!-- Modal -->
+<div class="modal fade" id="edit-experience-modal" role="dialog">
+    <div class="modal-dialog modal-xs">
+        <!-- Modal content-->
+        <form id="edit-exp">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Experience</h4>
+                </div>
+                <div class="modal-body">                   
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Company Name:</label>
+                            <input class="form-control" id="companyname-edit" type="text" data-name="Company Name">
+                            <label id="error-companyname-edit" class="text-danger" style="display:none"></label>
+                        </div>    
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Position:</label>
+                            <input class="form-control" id="jobposition-edit" type="text" data-name="Position">
+                            <label id="error-jobposition-edit" class="text-danger" style="display:none"></label>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Year Started</label>
+                            <input class="form-control" id="yearstarted-edit" type="text" data-name="Year Started">
+                            <label id="error-yearstarted-edit" class="text-danger" style="display:none"></label>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Year Ended</label>
+                            <input class="form-control" id="yearendedexp-edit" type="text" data-name="path">
+                            <label id="error-yearendedexp-edit" class="text-danger" style="display:none"></label>
+                        </div>
+                    </div>   
+                </div>                         
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="update-experience" >Add Experience</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<%--End of modal--%>
 
+
+<%-- ADD REFERENCE MODAL--%>
+<!-- Modal -->
+<div class="modal fade" id="add-reference-modal" role="dialog">
+    <div class="modal-dialog modal-xs">
+        <!-- Modal content-->
+        <form id="add-ref">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Reference</h4>
+                </div>
+                <div class="modal-body">                   
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Name:</label>
+                            <input class="form-control" id="name" type="text" data-name="Name">
+                            <label id="error-name" class="text-danger" style="display:none"></label>
+                        </div>    
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Contact:</label>
+                            <input class="form-control" id="contactreference" type="text" data-name="Contact">
+                            <label id="error-contactreference" class="text-danger" style="display:none"></label>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Occupation</label>
+                            <input class="form-control" id="occupation" type="text" data-name="Occupation">
+                            <label id="error-occupation" class="text-danger" style="display:none"></label>
+                        </div>
+                    </div>   
+                </div>                         
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="save-reference" >Add Reference</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<%--End of modal--%>
+
+<%-- EDIT REFERENCE MODAL--%>
+<!-- Modal -->
+<div class="modal fade" id="edit-reference-modal" role="dialog">
+    <div class="modal-dialog modal-xs">
+        <!-- Modal content-->
+        <form id="edit-ref">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Reference</h4>
+                </div>
+                <div class="modal-body">                   
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Name:</label>
+                            <input class="form-control" id="name-edit" type="text" data-name="Name">
+                            <label id="error-name-edit" class="text-danger" style="display:none"></label>
+                        </div>    
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Contact:</label>
+                            <input class="form-control" id="contactreference-edit" type="text" data-name="Contact">
+                            <label id="error-contactreference-edit" class="text-danger" style="display:none"></label>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Occupation</label>
+                            <input class="form-control" id="occupation-edit" type="text" data-name="Occupation">
+                            <label id="error-occupation-edit" class="text-danger" style="display:none"></label>
+                        </div>
+                    </div>   
+                </div>                         
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="update-reference" >Edit Reference</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<%--End of modal--%>
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="Scripts/WebForms/employee.js"></script>
 <script type="text/javascript">
     var id = parseInt(window.location.href.split('=')[1]);
-
+    var empId;
     $(document).ready(function () {
         getEmployee(id);
         getEmpReq(id);
         getRequirements();
         getEmpAtt(id);
         getEmpJobExp(id);
+        getEmpRef(id);
+
     });
 </script>
 

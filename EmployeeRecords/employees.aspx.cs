@@ -211,6 +211,28 @@ namespace EmployeeRecords
         }
 
 
+        //Find Employee Experience
+        [WebMethod]
+        public static List<EmployeeJobExperienceInfo> findEmployeeExp(int id)
+        {
+            var service = new EmployeeJobExperienceServices();
+
+            var experience = service.findEmpJobExperience(id);
+
+            return experience;
+        }
+
+        //Update Employee Requirements
+        [WebMethod]
+        public static int updateEmpExp(int id, string companyName, string jobPosition, string yearStarted, string yearEnded)
+        {
+            var item = 0;
+
+            item = EmployeeJobExperienceServices.updateEmpJobExperiences(id, companyName, jobPosition, yearStarted, yearEnded);
+
+            return item;
+        }
+
         //Deactivate Employee Experiences
         [WebMethod]
         public static int deactivateEmpExp(int id)
@@ -218,6 +240,62 @@ namespace EmployeeRecords
             var item = 0;
 
             item = EmployeeJobExperienceServices.deactivateEmpExperience(id);
+
+            return item;
+        }
+
+        //Get Employee References
+        [WebMethod]
+        public static List<EmployeeReferenceInfo> getEmployeeRef(int id)
+        {
+            var service = new EmployeeReferenceServices();
+
+            var references = service.getEmpReferences(id);
+
+            return references;
+        }
+
+        //Add Employee References
+        [WebMethod]
+        public static int insertEmployeeReferences(int employeeID, string name, string contact, string occupation)
+        {
+            var item = 0;
+
+            item = EmployeeReferenceServices.insertEmployeeReferences(employeeID, name, contact, occupation);
+
+            return item;
+        }
+
+
+        //Find Employee References
+        [WebMethod]
+        public static List<EmployeeReferenceInfo> findEmployeeRef(int id)
+        {
+            var service = new EmployeeReferenceServices();
+
+            var reference = service.findEmpReference(id);
+
+            return reference;
+        }
+
+        //Update Employee References
+        [WebMethod]
+        public static int updateEmpRef(int id, string name, string contact, string occupation)
+        {
+            var item = 0;
+
+            item = EmployeeReferenceServices.updateEmpReferences(id, name, contact, occupation);
+
+            return item;
+        }
+
+        //Deactivate Employee References
+        [WebMethod]
+        public static int deactivateEmpRef(int id)
+        {
+            var item = 0;
+
+            item = EmployeeReferenceServices.deactivateEmpReference(id);
 
             return item;
         }

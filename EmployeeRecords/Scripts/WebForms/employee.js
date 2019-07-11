@@ -539,7 +539,7 @@ $(document).on('click', '.removeEmpReq', function () {
 //Get Employee Attainments
 function getEmpAtt(empId) {
     //id = $(this).data('id');
-
+    $('#tbodyAttainments').text('');
     (new http).post("employees.aspx/getEmployeeAtt", {
         id: empId
     }).then(function (response) {
@@ -586,7 +586,7 @@ $(document).on('click', '#save-attainment', function (e) {
     }).then(function (response) {
         swal('Successfully Added!', 'Attainment has been added', 'success');
         $('.close').trigger('click');
-
+        getEmpAtt(id);
         $('.modal .form-control').val('');
     }).run();
     //}
@@ -595,7 +595,7 @@ $(document).on('click', '#save-attainment', function (e) {
 //Get Employee Experiences
 function getEmpJobExp(empId) {
     //id = $(this).data('id');
-
+    $('#tbodyExperiences').text('');
     (new http).post("employees.aspx/getEmployeeJobExp", {
         id: empId
     }).then(function (response) {
@@ -606,7 +606,7 @@ function getEmpJobExp(empId) {
                         "<td>" + item.JobPosition + "</td>" +
                         "<td>" + item.YearStarted + "-" + item.YearEnded + "</td>" +
                         "<td>";
-                html += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit editEmpAtt\" data-toggle='modal' data-target='#edit-att-modal'>" +
+                html += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit editEmpExp\" data-toggle='modal' data-target='#edit-experience-modal'>" +
                         //"<span class=\"tooltiptext\">Click to modify details</span>" +
                     "</i>";
                 html += "<i data-id=\"" + item.ID + "\" data-name=\"" + item.CompanyName + "\" class=\"fa fa-remove removeEmpExp\">" +
@@ -636,6 +636,7 @@ $(document).on('click', '#save-experience', function (e) {
         yearEnded: $('#yearendedexp').val()
         //image: $('#ContentPlaceHolder1_image').val().split('\\')[$('#ContentPlaceHolder1_image').val().split('\\').length - 1]
     }).then(function (response) {
+        getEmpJobExp(id);
         swal('Successfully Added!', 'Experience has been added', 'success');
         $('.close').trigger('click');
 
@@ -664,10 +665,166 @@ $(document).on('click', '.removeEmpExp', function () {
                 name: name
             }).then(function (response) {
                 swal('Successfully Deactivated', 'Experience Has Been Removed!', 'success');
-                reload();
+                var empId = parseInt(window.location.href.split('=')[1]);
+                getEmpJobExp(empId);
             }).run();
         }
     })
+});
+
+//Function for retrieving experience for editing
+$(document).on('click', '.editEmpExp', function () {
+    id = $(this).data('id');
+
+    (new http).post("employees.aspx/findEmployeeExp", {
+        id: id
+    }).then(function (response) {
+        var item = response.d[0];
+        $('#companyname-edit').val(item.CompanyName);
+        $('#jobposition-edit').val(item.JobPosition);
+        $('#yearstarted-edit').val(item.YearStarted);
+        $('#yearendedexp-edit').val(item.YearEnded);
+    }).run();
+});
+
+//Function for updating employee experience
+$(document).on('click', '#update-experience', function (e) {
+    e.preventDefault();
+    //id = $(this).data('id');
+
+    //if (isInputEditValid()) {
+    //    $('.fa-spin').removeClass('hidden');
+
+    (new http).post("employees.aspx/updateEmpExp", {
+        id: id,
+        companyName: $('#companyname-edit').val(),
+        jobPosition: $('#jobposition-edit').val(),
+        yearStarted: $('#yearstarted-edit').val(),
+        yearEnded: $('#yearendedexp-edit').val()
+    }).then(function (response) {
+        swal('Successfully updated!', 'Experience has been updated', 'success');
+        $('.close').trigger('click');
+        var empId = parseInt(window.location.href.split('=')[1]);
+        getEmpJobExp(empId);
+    }).run();
+    //}
+
+});
+
+//Get Employee References
+function getEmpRef(empId) {
+    //id = $(this).data('id');
+    $('#tbodyReferences').text('');
+    (new http).post("employees.aspx/getEmployeeRef", {
+        id: empId
+    }).then(function (response) {
+        var items = response.d.map(item => {
+            if (item.Status) {
+                var html = "<tr>" +
+                        "<td>" + item.Name + "</td>" +
+                        "<td>" + item.Contact + "</td>" +
+                        "<td>" + item.Occupation +
+                        "<td>";
+                html += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit editEmpRef\" data-toggle='modal' data-target='#edit-reference-modal'>" +
+                        //"<span class=\"tooltiptext\">Click to modify details</span>" +
+                    "</i>";
+                html += "<i data-id=\"" + item.ID + "\" data-name=\"" + item.Name + "\" class=\"fa fa-remove removeEmpRef\">" +
+                   //"<span class=\"tooltiptext\">Click to deactivate</span>" +
+               "</i>";
+                html += "</td>" +
+                "</tr>";
+                $('#tbodyReferences').append(html);
+            }
+        });
+    }).run();
+};
+
+//Add Employee Reference
+$(document).on('click', '#save-reference', function (e) {
+    e.preventDefault();
+
+    //if (isInputValid()) {
+    //    $('.fa-spin').removeClass('hidden');
+
+    (new http).post("employees.aspx/insertEmployeeReferences", {
+
+        employeeID: id,
+        name: $('#name').val(),
+        contact: $('#contactreference').val(),
+        occupation: $('#occupation').val()
+        //image: $('#ContentPlaceHolder1_image').val().split('\\')[$('#ContentPlaceHolder1_image').val().split('\\').length - 1]
+    }).then(function (response) {
+        swal('Successfully Added!', 'Reference has been added', 'success');
+        $('.close').trigger('click');
+        var empId = parseInt(window.location.href.split('=')[1]);
+        getEmpRef(empId);
+        $('.modal .form-control').val('');
+    }).run();
+    //}
+});
+
+//Function for deactivating employee Reference
+$(document).on('click', '.removeEmpRef', function () {
+    id = $(this).data('id');
+    var name = $(this).data('name');
+
+    swal({
+        title: 'Are you sure you want to deactivate ' + $(this).data('name') + '?',
+        text: "You won't be able to revert this action!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'green',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Deactivate!'
+    }).then(function (isConfirm) {
+        if (isConfirm.value == true) {
+            (new http).post("employees.aspx/deactivateEmpRef", {
+                id: id,
+                name: name
+            }).then(function (response) {
+                swal('Successfully Deactivated', 'Reference Has Been Removed!', 'success');
+                var empId = parseInt(window.location.href.split('=')[1]);
+                getEmpRef(empId);
+            }).run();
+        }
+    })
+});
+
+//Function for retrieving Reference for editing
+$(document).on('click', '.editEmpRef', function () {
+    id = $(this).data('id');
+
+    (new http).post("employees.aspx/findEmployeeRef", {
+        id: id
+    }).then(function (response) {
+        var item = response.d[0];
+        $('#name-edit').val(item.Name);
+        $('#contactreference-edit').val(item.Contact);
+        $('#occupation-edit').val(item.Occupation);
+    }).run();
+});
+
+//Function for updating employee Reference
+$(document).on('click', '#update-reference', function (e) {
+    e.preventDefault();
+    //id = $(this).data('id');
+
+    //if (isInputEditValid()) {
+    //    $('.fa-spin').removeClass('hidden');
+
+    (new http).post("employees.aspx/updateEmpRef", {
+        id: id,
+        name: $('#name-edit').val(),
+        contact: $('#contactreference-edit').val(),
+        occupation: $('#occupation-edit').val()
+    }).then(function (response) {
+        swal('Successfully updated!', 'Reference has been updated', 'success');
+        $('.close').trigger('click');
+        var empId = parseInt(window.location.href.split('=')[1]);
+        getEmpRef(empId);
+    }).run();
+    //}
+
 });
 
 
