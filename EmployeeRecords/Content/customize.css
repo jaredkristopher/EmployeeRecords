@@ -6,23 +6,21 @@
     border-top: none !important;
 }
 
-.modal .col-md-1, .modal .col-md-2, .modal .col-md-3, .modal .col-md-4, .modal .col-md-5, .modal .col-md-6, .modal .col-md-12, .modal .col-md-8, .modal .col-md-9 {
-        margin-bottom: 1%;
-        margin-top: 1%;
-
+.modal .col-md-1, .modal .col-md-2, .modal .col-md-3, .modal .col-md-4, .modal .col-md-5, .modal .col-md-6, .modal .col-md-12, .modal .col-md-9 {
+    margin-bottom: 1%;
+    margin-top: 1%;
 }
 
-.tab-content .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6,  .col-md-12, .col-md-8, .col-md-9 {
-        margin-bottom: 1%;
-        margin-top: 1%;
-
+.tab-content .col-md-1,  .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-12, .col-md-8 {
+    margin-bottom: 1%;
+    margin-top: 1%;
 }
 
 @media (min-width: 768px) {
-  .modal-xl {
-    width: 90%;
-   max-width:1200px;
-  }
+    .modal-xl {
+        width: 90%;
+        max-width:1200px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -152,7 +150,7 @@
 .modal-backdrop
 {
     opacity: 0.8 !important;
-}
+} 
 
 .btn-space {
     margin-top: 10px;

@@ -25,8 +25,8 @@ namespace EmployeeRecords.Transformers
         #region Private Properties
         private object ID { get; set; }
         private object EmployeeID { get; set; }
-        private object Requirement { get; set; }
         private object RequirementID { get; set; }
+        private object Requirement { get; set; }
         private object RequirementPath { get; set; }
         private object Note { get; set; }
         private object Status { get; set; }

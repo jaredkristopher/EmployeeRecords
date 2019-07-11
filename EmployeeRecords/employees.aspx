@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="employees.aspx.cs" Inherits="EmployeeRecords.employees" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <div class="col-sm-10 text-left">
-        <div class="grid-container">
+        <div class="grid-container col-md-11">
           <%--First Row--%>
           <div>
               <h1>Employees</h1>
@@ -11,8 +11,8 @@
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"  data-backdrop="static" data-keyboard="false">Add New Employee</button>
               <button type="button" id="btnExport" class="btn btn-primary" onclick="fnExcelReport();">Export Excel</button>
           </div>
-            <table class="table table-striped">
-                <%--<thead>
+<%--            <table class="table table-striped">
+                <thead>
                     <tr>
                         <th scope="col">
                          <label>Show
@@ -27,15 +27,14 @@
                             <th scope="col"></th>
                                 <th scope="col">
                                     <label>Search:
-                                        <input type="text"  id="myInput" class="" placeholder="Search..." aria-controls="myTable">
+                                        <input type="text"  id="myInput" class="" placeholder="Search.." aria-controls="myTable">
                                     </label></th>        
                     </tr>
-                </thead>--%>
-            </table>
-        <table class="table table-hover" id="tbl">
+                </thead>
+            </table>--%>
+        <table class="table table-hover" id="tbl" >
             <thead>
                 <tr> 
-                    <th>No.</th>
                     <th>Employee Number</th>
                     <th>Profile Picture</th>
                     <th>Name</th>
@@ -67,8 +66,8 @@
           <a class="page-link" href="#">Next</a>
     </li>
   </ul>
-</nav>
- --%>
+</nav>--%>
+ 
 <%-- ADD EMPLOYEE MODAL--%>
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
@@ -86,16 +85,16 @@
                             <div class="col-md-4">   
                                 <div class="container">
                                     <img class='img-responsive' src="Content/img/29-512.png">
-                                        <div class="avatar-upload">
-                                            <div class="avatar-edit">
-                                                <input type='file' id="imageUpload2" accept=".png, .jpg, .jpeg" />
-                                                <label for="imageUpload2"></label>
-                                            </div>
-                                            <div class="avatar-preview">
-                                                <div id="imagePreview2" style="background-image: url(http://i.pravatar.cc/500?img=7);">
-                                                </div>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-edit">
+                                            <input type='file' id="imageUpload2" accept=".png, .jpg, .jpeg" />
+                                            <label for="imageUpload2"></label>
+                                        </div>
+                                        <div class="avatar-preview">
+                                            <div id="imagePreview2" style="background-image: url(http://i.pravatar.cc/500?img=7);">
                                             </div>
                                         </div>
+                                    </div>
                                 </div>  
                             </div>
                             </div>
@@ -396,7 +395,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Employee info</h4>
-                    <a href="#" class="more-employee-info" target="_blank">Work related info →</a>
+                    <a href="#" class="more-employee-info" target="_blank">More Info -></a>
                 </div>
                     <div class="modal-body">
                         <div class="row">
@@ -520,9 +519,6 @@
     </div>
 </div>
 <%--End of modal--%>
-
- 
-
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

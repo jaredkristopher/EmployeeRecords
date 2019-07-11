@@ -237,6 +237,7 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sweetalert2.min.js" />
     <Content Include="Scripts\validator.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\employee.js" />
@@ -276,7 +277,6 @@
     <Content Include="Site.Mobile.Master" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-    <Content Include="Scripts\sweetalert2.min.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -439,15 +439,44 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Info\EmployeeRequirementInfo.cs" />
+    <Compile Include="Info\AttainmentInfo.cs" />
+    <Compile Include="Info\EmployeeAttainmentInfo.cs" />
+    <Compile Include="Info\EmployeeAttendanceInfo.cs" />
+    <Compile Include="Info\CommentInfo.cs" />
     <Compile Include="Info\EmployeeInfo.cs" />
-    <Compile Include="Models\EmployeeBenefitModel.cs" />
+    <Compile Include="Info\EmployeeJobExperienceInfo.cs" />
+    <Compile Include="Info\EmployeeReferenceInfo.cs" />
+    <Compile Include="Info\EmployeeRequirementInfo.cs" />
+    <Compile Include="Info\EmployeeStatusInfo.cs" />
+    <Compile Include="Info\LoggedStatusInfo.cs" />
+    <Compile Include="Info\RequirementInfo.cs" />
+    <Compile Include="Info\RoleInfo.cs" />
+    <Compile Include="Models\AttainmentModel.cs" />
+    <Compile Include="Models\EmployeeAttainmentModel.cs" />
+    <Compile Include="Models\EmployeeAttendanceModel.cs" />
+    <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\EmployeeJobExperienceModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\EmployeeReferenceModel.cs" />
     <Compile Include="Models\EmployeeRequirementModel.cs" />
+    <Compile Include="Models\EmployeeStatusModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LoggedStatusModel.cs" />
+    <Compile Include="Models\RequirementModel.cs" />
+    <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AttainmentServices.cs" />
+    <Compile Include="Services\EmployeeAttainmentServices.cs" />
+    <Compile Include="Services\EmployeeAttendanceServices.cs" />
+    <Compile Include="Services\CommentServices.cs" />
+    <Compile Include="Services\EmployeeJobExperienceServices.cs" />
+    <Compile Include="Services\EmployeeReferenceServices.cs" />
     <Compile Include="Services\EmployeeRequirementServices.cs" />
     <Compile Include="Services\EmployeeServices.cs" />
+    <Compile Include="Services\EmployeeStatusServices.cs" />
+    <Compile Include="Services\LoggedStatusServices.cs" />
+    <Compile Include="Services\RequirementServices.cs" />
+    <Compile Include="Services\RoleServices.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -463,8 +492,18 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Transformers\AttainmentTransformer.cs" />
+    <Compile Include="Transformers\EmployeeAttainmentTransformer.cs" />
+    <Compile Include="Transformers\EmployeeAttendanceTransformer.cs" />
+    <Compile Include="Transformers\CommentTransformer.cs" />
+    <Compile Include="Transformers\EmployeeJobExperienceTransformer.cs" />
+    <Compile Include="Transformers\EmployeeReferenceTransformer.cs" />
     <Compile Include="Transformers\EmployeeRequirementTransformer.cs" />
+    <Compile Include="Transformers\EmployeeStatusTransformer.cs" />
     <Compile Include="Transformers\EmployeeTransformer.cs" />
+    <Compile Include="Transformers\LoggedStatusTransformer.cs" />
+    <Compile Include="Transformers\RequirementTransformer.cs" />
+    <Compile Include="Transformers\RoleTransformer.cs" />
     <Compile Include="Transformers\Transformer.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
@@ -476,6 +515,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\requirements\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

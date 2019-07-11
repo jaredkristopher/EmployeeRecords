@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace EmployeeRecords.Services
 {
@@ -33,19 +31,15 @@ namespace EmployeeRecords.Services
                     dbconn.Close();
 
                 dbconn.Open();
-
                 using (var cmd = new SqlCommand("spGetEmployees", dbconn))
                 {
                     try
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-
                         var reader = cmd.ExecuteReader();
-
                         while (reader.Read())
                         {
                             var item = _transformer.Transform(reader);
-
                             items.Add(item);
                         }
                     }
@@ -55,7 +49,6 @@ namespace EmployeeRecords.Services
                     }
                 }
             }
-
             return items;
         }
 
@@ -96,12 +89,10 @@ namespace EmployeeRecords.Services
             return items;
         }
 
-
-
         public static int insert(string lname, string fname, string mname, string contact,
-        string email, string password, string address, string birthday, string gender,
-        string religion, string nationality, string birthplace, string civilstatus, 
-        string employeestatus, string role)
+            string email, string password, string address, string birthday, string gender,
+            string religion, string nationality, string birthplace, string civilstatus, 
+            string employeestatus, string role)
         {
             var item = 0;
 
@@ -139,13 +130,11 @@ namespace EmployeeRecords.Services
                     }
                 }
             }
-
             return item;
         }
 
-
         public static int update(int id, string fname, string lname, string mname,
-            string contact, string email, string address, string birthday, string gender, string religion,
+            string contact, string email, string address, string birthday, string gender, string religion, 
             string nationality, string birthplace, string civilstatus, int employeestatus, int role)
         {
             var item = 0;
@@ -188,6 +177,7 @@ namespace EmployeeRecords.Services
 
             return item;
         }
+
         public static int deactivate(int id)
         {
             var item = 0;
@@ -246,6 +236,4 @@ namespace EmployeeRecords.Services
             return item;
         }
     }
-
-
 }

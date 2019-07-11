@@ -22,39 +22,6 @@ namespace EmployeeRecords.Services
         private readonly EmployeeRequirementTransformer _transformer;
         #endregion
 
-
-        public List<EmployeeRequirementInfo> findEmpRequirements(int id)
-        {
-            var items = new List<EmployeeRequirementInfo>();
-
-            using (var dbconn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-            {
-                if (dbconn.State == ConnectionState.Open)
-                    dbconn.Close();
-
-                dbconn.Open();
-                using (var cmd = new SqlCommand("spFindEmpReq", dbconn))
-                {
-                    try
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("id", id);
-                        var reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            var item = _transformer.Transform(reader);
-                            items.Add(item);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.ToString();
-                    }
-                }
-            }   
-            return items;
-        }
-
         public List<EmployeeRequirementInfo> getEmpRequirements(int id)
         {
             var items = new List<EmployeeRequirementInfo>();
@@ -71,7 +38,43 @@ namespace EmployeeRecords.Services
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("id", id);
+
                         var reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            var item = _transformer.Transform(reader);
+                            items.Add(item);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.ToString();
+                    }
+                }
+            }
+            return items;
+        }
+
+        public List<EmployeeRequirementInfo> findEmpRequirement(int id)
+        {
+            var items = new List<EmployeeRequirementInfo>();
+
+            using (var dbconn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                if (dbconn.State == ConnectionState.Open)
+                    dbconn.Close();
+
+                dbconn.Open();
+
+                using (var cmd = new SqlCommand("spFindEmpReq", dbconn))
+                {
+                    try
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("id", id);
+
+                        var reader = cmd.ExecuteReader();
+
                         while (reader.Read())
                         {
                             var item = _transformer.Transform(reader);
@@ -95,9 +98,9 @@ namespace EmployeeRecords.Services
             {
                 if (dbconn.State == ConnectionState.Open)
                     dbconn.Close();
-                    dbconn.Open();
+                dbconn.Open();
 
-                using (var cmd = new SqlCommand("spInsertReq", dbconn))
+                using (var cmd = new SqlCommand("spInsertEmpReq", dbconn))
                 {
                     try
                     {
@@ -114,9 +117,9 @@ namespace EmployeeRecords.Services
                     }
                 }
             }
-
             return item;
         }
+
         public static int updateEmpRequirement(int id, int requirementId, string requirementPath, string note)
         {
             var item = 0;
