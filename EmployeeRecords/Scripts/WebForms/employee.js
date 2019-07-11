@@ -609,7 +609,7 @@ function getEmpJobExp(empId) {
                 html += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit editEmpAtt\" data-toggle='modal' data-target='#edit-att-modal'>" +
                         //"<span class=\"tooltiptext\">Click to modify details</span>" +
                     "</i>";
-                html += "<i data-id=\"" + item.ID + "\" data-name=\"" + item.Requirement + "\" class=\"fa fa-remove removeEmpReq\">" +
+                html += "<i data-id=\"" + item.ID + "\" data-name=\"" + item.CompanyName + "\" class=\"fa fa-remove removeEmpExp\">" +
                    //"<span class=\"tooltiptext\">Click to deactivate</span>" +
                "</i>";
                 html += "</td>" +
@@ -644,8 +644,35 @@ $(document).on('click', '#save-experience', function (e) {
     //}
 });
 
+//Function for deactivating employee experiences
+$(document).on('click', '.removeEmpExp', function () {
+    id = $(this).data('id');
+    var name = $(this).data('name');
+
+    swal({
+        title: 'Are you sure you want to deactivate ' + $(this).data('name') + '?',
+        text: "You won't be able to revert this action!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'green',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Deactivate!'
+    }).then(function (isConfirm) {
+        if (isConfirm.value == true) {
+            (new http).post("employees.aspx/deactivateEmpExp", {
+                id: id,
+                name: name
+            }).then(function (response) {
+                swal('Successfully Deactivated', 'Experience Has Been Removed!', 'success');
+                reload();
+            }).run();
+        }
+    })
+});
+
+
 //Function for retrieving requirement for editing
-$(document).on('click', '.editEmpAtt', function () {
+$(document).on('click', '.editEmpReq', function () {
     id = $(this).data('id');
 
     (new http).post("employees.aspx/findEmployeeReq", {

@@ -211,5 +211,17 @@ namespace EmployeeRecords
         }
 
 
+        //Deactivate Employee Experiences
+        [WebMethod]
+        public static int deactivateEmpExp(int id)
+        {
+            var item = 0;
+
+            item = EmployeeJobExperienceServices.deactivateEmpExperience(id);
+
+            return item;
+        }
+
+
     }
 }
