@@ -66,6 +66,7 @@
         <li><a data-toggle="pill" href="#references">References</a></li>
         <li><a data-toggle="pill" href="#attendance">Attendance</a></li>
     </ul>
+
     <div class="tab-content">
         <div id="basic-info" class="tab-pane fade in active">
               <div class="row">  
@@ -184,6 +185,43 @@
               <h3>Menu 3</h3>
               <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
         </div>
+    </div>
+</div>
+
+<div class="row bootstrap snippets">
+    <div class="col-md-7 col-md-offset-2 col-sm-12">
+        <div class="comment-wrapper">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Employee Comment panel
+                </div>
+                <div class="panel-body">
+                    <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
+                    <br>
+                    <button type="button" class="btn btn-info pull-right">Post</button>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <ul class="media-list">
+                        <li class="media">
+                            <a href="#" class="pull-left">
+                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                            </a>
+                            <div class="media-body">
+                                <span class="text-muted pull-right">
+                                    <small class="text-muted">Date modified</small>
+                                </span>
+                                <strong class="text-success">@MartinoMont</strong>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -530,7 +568,6 @@
 <script src="Scripts/WebForms/employee.js"></script>
 <script type="text/javascript">
     var id = parseInt(window.location.href.split('=')[1]);
-    var empId;
     $(document).ready(function () {
         getEmployee(id);
         getEmpReq(id);
