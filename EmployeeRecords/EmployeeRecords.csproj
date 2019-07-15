@@ -266,6 +266,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="userroles.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -442,7 +443,7 @@
     <Compile Include="Info\AttainmentInfo.cs" />
     <Compile Include="Info\EmployeeAttainmentInfo.cs" />
     <Compile Include="Info\EmployeeAttendanceInfo.cs" />
-    <Compile Include="Info\CommentInfo.cs" />
+    <Compile Include="Info\EmployeeCommentInfo.cs" />
     <Compile Include="Info\EmployeeInfo.cs" />
     <Compile Include="Info\EmployeeJobExperienceInfo.cs" />
     <Compile Include="Info\EmployeeReferenceInfo.cs" />
@@ -454,7 +455,7 @@
     <Compile Include="Models\AttainmentModel.cs" />
     <Compile Include="Models\EmployeeAttainmentModel.cs" />
     <Compile Include="Models\EmployeeAttendanceModel.cs" />
-    <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\EmployeeCommentModel.cs" />
     <Compile Include="Models\EmployeeJobExperienceModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\EmployeeReferenceModel.cs" />
@@ -468,7 +469,7 @@
     <Compile Include="Services\AttainmentServices.cs" />
     <Compile Include="Services\EmployeeAttainmentServices.cs" />
     <Compile Include="Services\EmployeeAttendanceServices.cs" />
-    <Compile Include="Services\CommentServices.cs" />
+    <Compile Include="Services\EmployeeCommentServices.cs" />
     <Compile Include="Services\EmployeeJobExperienceServices.cs" />
     <Compile Include="Services\EmployeeReferenceServices.cs" />
     <Compile Include="Services\EmployeeRequirementServices.cs" />
@@ -495,7 +496,7 @@
     <Compile Include="Transformers\AttainmentTransformer.cs" />
     <Compile Include="Transformers\EmployeeAttainmentTransformer.cs" />
     <Compile Include="Transformers\EmployeeAttendanceTransformer.cs" />
-    <Compile Include="Transformers\CommentTransformer.cs" />
+    <Compile Include="Transformers\EmployeeCommentTransformer.cs" />
     <Compile Include="Transformers\EmployeeJobExperienceTransformer.cs" />
     <Compile Include="Transformers\EmployeeReferenceTransformer.cs" />
     <Compile Include="Transformers\EmployeeRequirementTransformer.cs" />
@@ -505,6 +506,13 @@
     <Compile Include="Transformers\RequirementTransformer.cs" />
     <Compile Include="Transformers\RoleTransformer.cs" />
     <Compile Include="Transformers\Transformer.cs" />
+    <Compile Include="userroles.aspx.cs">
+      <DependentUpon>userroles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="userroles.aspx.designer.cs">
+      <DependentUpon>userroles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

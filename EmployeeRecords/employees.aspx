@@ -4,35 +4,14 @@
         <div class="grid-container col-md-11">
           <%--First Row--%>
           <div>
-              <h1>Employees</h1>
+               <h3>Employees</h3>
           </div>
            <%--Second row BUTTONS--%>
           <div>        
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"  data-backdrop="static" data-keyboard="false">Add New Employee</button>
               <button type="button" id="btnExport" class="btn btn-primary" onclick="fnExcelReport();">Export Excel</button>
           </div>
-<%--            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">
-                         <label>Show
-                            <select name="myTable_length" aria-controls="myTable" class="">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select> entries
-                           </label>  </th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                                <th scope="col">
-                                    <label>Search:
-                                        <input type="text"  id="myInput" class="" placeholder="Search.." aria-controls="myTable">
-                                    </label></th>        
-                    </tr>
-                </thead>
-            </table>--%>
-        <table class="table table-hover" id="tbl" >
+          <table class="table table-hover" id="tbl" >
             <thead>
                 <tr> 
                     <th>Employee Number</th>
@@ -44,40 +23,22 @@
                     <th>Gender</th>
                     <th>Status</th>
                     <th>Action</th>
-                </tr>
+                 </tr>
             </thead>
             <tbody id="tbody">
-
             </tbody>
-        </table>
+          </table>
     </div>
-    <%--Showing of entries--%>
-<%--    <div class="dataTables_info" id="myTable_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>--%>
-    <%--Pagination--%>
-<%--<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-end">
-    <li class="page-item disabled">
-    <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>--%>
- 
 <%-- ADD EMPLOYEE MODAL--%>
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
         <!-- Modal content-->
         <form id="add">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add New Employee</h4>
+                    <h4 class="modal-title">Add Employee</h4>
                 </div>
                     <div class="modal-body">
                         <div class="row">
@@ -85,139 +46,133 @@
                             <div class="col-md-4">   
                                 <div class="container">
                                     <img class='img-responsive' src="Content/img/29-512.png">
-                                    <div class="avatar-upload">
-                                        <div class="avatar-edit">
-                                            <input type='file' id="imageUpload2" accept=".png, .jpg, .jpeg" />
-                                            <label for="imageUpload2"></label>
-                                        </div>
-                                        <div class="avatar-preview">
-                                            <div id="imagePreview2" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                                        <div class="avatar-upload">
+                                            <div class="avatar-add">
+                                                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                                <label for="imageUpload"></label>
+                                            </div>
+                                            <div class="avatar-preview">
+                                                <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>  
                             </div>
                             </div>
-                            <div class="row">     
-                                <div class="col-md-6">
-                                    <label>First Name:</label>
-                                    <input class="form-control" id="first-name" type="text" data-name="First Name">
-                                    <label id="error-first-name" class="text-danger" style="display:none"></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Last Name:</label>
-                                    <input class="form-control" id="last-name" type="text" data-name="Last Name"/>
-                                    <label id="error-last-name" class="text-danger" style="display:none"></label>
-                                </div>
-                             </div>
-                             <div class="row">
-                                <div class="col-md-6">
-                                    <label>Middle Initial:</label>
-                                    <input class="form-control" id="MI" type="text" data-name="Middle Initial">
-                                    <label id="error-MI" class="text-danger" style="display:none"></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Email:</label>
-                                    <input class="form-control" id="email" type="text">
-                                   <label id="error-email" class="text-danger" style="display:none"></label>
-                                </div>
-                                </div>
-                                <div class="row">
+                            <div class="input-group">
+                                <div class="row">     
                                     <div class="col-md-6">
-                                        <label>Password:</label>
-                                        <input class="form-control" id="password" type="password" data-name="Password">
-                                        <label id="error-password" class="text-danger" style="display:none"></label>
+                                        <label>First Name:</label>
+                                        <input class="form-control" id="first-name" type="text" data-name="First Name">
+                                        <label id="error-first-name" class="text-danger" style="display:none"></label>
                                     </div>
                                     <div class="col-md-6">
-                                        <label>Contact Number:</label>
-                                        <input class="form-control" id="contact" type="text" data-name="Contact Number">
-                                        <label id="error-contactnumber" class="text-danger" style="display:none"></label>
+                                        <label>Last Name:</label>
+                                        <input class="form-control" id="last-name" type="text" data-name="Last Name">
+                                        <label id="error-last-name" class="text-danger" style="display:none"></label>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Address:</label>
-                                        <input class="form-control" id="address" type="text" data-name="Address">
-                                        <label id="error-address" class="text-danger" style="display:none"></label>
-                                    </div> 
-                                </div>                      
-                                <div class="row">
+                                 </div>
+                                 <div class="row">
                                     <div class="col-md-6">
-                                            <label>Gender</label>
-                                            <select class="form-control" id="gender" data-name="Gender">
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                            </select>
-                                            <label id="error-gender" class="text-danger" style="display:none"></label>
+                                        <label>Middle Initial:</label>
+                                        <input class="form-control" id="MI" type="text" data-name="Middle Initial">
+                                        <label id="error-MI" class="text-danger" style="display:none"></label>
                                     </div>
                                     <div class="col-md-6">
-                                        <label>Birthday:</label>
-                                        <input class="form-control" id="birthday" type="text" data-name="Birthday">
-                                        <label id="error-birthday" class="text-danger" style="display:none"></label>
-                                        <%--<div class="form-group">
-                                            <div class="input-group date" id="birthday">
-                                                <input type="text" class="form-control" />
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </div>
-                                        </div>--%>
+                                        <label>Email:</label>
+                                        <input class="form-control" id="email" type="text" data-name="Email">
+                                        <label id="error-email" class="text-danger" style="display:none"></label>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Religion:</label>
-                                        <input class="form-control" id="religion" type="text" data-name="Religion">
-                                        <label id="error-religion" class="text-danger" style="display:none"></label>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label>Nationality:</label>
-                                        <input class="form-control" id="nationality" type="text" data-name="Nationality">
-                                        <label id="error-nationality" class="text-danger" style="display:none"></label>
-                                    </div>
-                                  </div>  
                                     <div class="row">
                                         <div class="col-md-6">
-                                                <label>Birthplace:</label>
-                                                <input class="form-control" id="birthplace" type="text"  data-name="Birthplace">
-                                                <label id="error-birthplace" class="text-danger" style="display:none"></label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>Civil Status:</label>
-                                                <select class="form-control" id="civilstatus" data-name="Civil Status">
-                                                    <option value="Single">Single</option>
-                                                    <option value="Married">Married</option>
-                                                    <option value="Widowed">Widowed</option>
-                                                    <option value="Complicated">Widowed</option>
-                                                </select>
-                                                <label id="error-civilstatus" class="text-danger" style="display:none"></label>
-                                            </div>
+                                            <label>Password:</label>
+                                            <input class="form-control" id="password" type="password" data-name="Password">
+                                            <label id="error-password" class="text-danger" style="display:none"></label>
                                         </div>
+                                        <div class="col-md-6">
+                                            <label>Contact Number:</label>
+                                            <input class="form-control" id="contact" type="text" data-name="Contact Number">
+                                            <label id="error-contactnumber" class="text-danger" style="display:none"></label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Address:</label>
+                                            <input class="form-control" id="address" type="text" data-name="Address">
+                                            <label id="error-address" class="text-danger" style="display:none"></label>
+                                        </div> 
+                                    </div>                      
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                                <label>Gender</label>
+                                                <select class="form-control" id="gender" data-name="Gender">
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                </select>
+                                                <label id="error-gender" class="text-danger" style="display:none"></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Birthday:</label>
+                                            <input class="form-control" id="birthday" type="text" data-name="Birthday">
+                                            <label id="error-birthday" class="text-danger" style="display:none"></label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Religion:</label>
+                                            <input class="form-control" id="religion" type="text" data-name="Religion">
+                                            <label id="error-religion" class="text-danger" style="display:none"></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Nationality:</label>
+                                            <input class="form-control" id="nationality" type="text" data-name="Nationality">
+                                            <label id="error-nationality" class="text-danger" style="display:none"></label>
+                                        </div>
+                                      </div>  
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Employees Status:</label>
-                                                <select class="form-control" id="employeestatus" data-name="Civil Status">
-                                                    <option value="1">Hired</option>
-                                                    <option value="2">Rejected</option>
-                                                    <option value="3">Terminated</option>
-                                                    <option value="4">Applicant</option>
-                                                </select>
-                                                <label id="error-employeestatus" class="text-danger" style="display:none"></label>
+                                                    <label>Birthplace:</label>
+                                                    <input class="form-control" id="birthplace" type="text" data-name="Birthplace">
+                                                    <label id="error-birthplace" class="text-danger" style="display:none"></label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Civil Status:</label>
+                                                    <select class="form-control" id="civilstatus" data-name="Civil Status">
+                                                        <option value="Single">Single</option>
+                                                        <option value="Married">Married</option>
+                                                        <option value="Widowed">Widowed</option>
+                                                        <option value="Complicated">Widowed</option>
+                                                    </select>
+                                                    <label id="error-civilstatus" class="text-danger" style="display:none"></label>
+                                                </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label>Role:</label>
-                                                <select class="form-control" id="role" data-name="Role">
-                                                    <option value="1">Admin</option>
-                                                    <option value="2">Supervisor</option>
-                                                    <option value="3">Staff</option>
-                                                    <option value="4">Employee</option>
-                                                </select>
-                                                <label id="error-role" class="text-danger" style="display:none"></label>
-                                            </div>
-                                          </div> 
-                                </div>                         
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Employees Status:</label>
+                                                    <select class="form-control" id="employeestatus" data-name="Employee Status">
+                                                        <option value="1">Hired</option>
+                                                        <option value="2">Rejected</option>
+                                                        <option value="3">Terminated</option>
+                                                        <option value="4">Applicant</option>
+                                                    </select>
+                                                    <label id="error-employee" class="text-danger" style="display:none"></label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Role:</label>
+                                                    <select class="form-control" id="role" data-name="Employee Role">
+                                                        <option value="1">Admin</option>
+                                                        <option value="2">Supervisor</option>
+                                                        <option value="3">Staff</option>
+                                                        <option value="4">Employee</option>
+                                                    </select>
+                                                    <label id="error-role" class="text-danger" style="display:none"></label>
+                                                </div>
+                                              </div> 
+                                    </div> 
+                                </div>                        
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" id="save" >Create Employee</button>
+                                    <button type="button" class="btn btn-default" id="save">Add Employee</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
             </div>
@@ -230,7 +185,7 @@
 <%-- EDIT EMPLOYEE MODAL--%>
 <!-- Modal -->
 <div class="modal fade" id="edit-modal" role="dialog">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
         <!-- Modal content-->
         <form id="edit">
             <div class="modal-content">
@@ -246,11 +201,11 @@
                                     <img class='img-responsive' src="Content/img/29-512.png">
                                         <div class="avatar-upload">
                                             <div class="avatar-edit">
-                                                <input type='file' id="imageUpload12" accept=".png, .jpg, .jpeg" />
+                                                <input type='file' id="imageUpload123" accept=".png, .jpg, .jpeg" />
                                                 <label for="imageUpload"></label>
                                             </div>
                                             <div class="avatar-preview">
-                                                <div id="imagePreview12" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                                                <div id="imagePreview123" style="background-image: url(http://i.pravatar.cc/500?img=7);">
                                                 </div>
                                             </div>
                                         </div>
@@ -388,7 +343,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="view-modal" role="dialog">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
         <!-- Modal content-->
         <form id="view">
             <div class="modal-content">
@@ -521,7 +476,8 @@
 <%--End of modal--%>
 
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="scripts/jquery-3.4.1.js"></script>
+<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--%>
 <script src="Scripts/WebForms/employee.js"></script>
 
 </asp:Content>

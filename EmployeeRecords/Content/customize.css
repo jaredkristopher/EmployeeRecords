@@ -155,3 +155,13 @@
 .btn-space {
     margin-top: 10px;
 }
+
+.container {
+    width: 100px;
+}
+
+.container img {
+    display: block;
+    width: 100%;
+    height: auto;
+}

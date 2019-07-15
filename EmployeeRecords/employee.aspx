@@ -9,9 +9,9 @@
     </div>
     <div class="row">  
         <div class="col-md-3">   
-            <div class="container">
+           <%-- <div class="container">--%>
                 <img class='img-responsive' src="Content/img/29-512.png">
-            </div>  
+            <%--</div>  --%>
         </div>
         <div class="col-md-4">
             <table class="table table-hover" id="tbl">
@@ -70,51 +70,51 @@
     <div class="tab-content">
         <div id="basic-info" class="tab-pane fade in active">
               <div class="row">  
-                        </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                                <label>Address:</label>
-                                <input class="form-control" id="address-view" type="text" disabled>
-                            </div> 
-                        </div>                      
-                        <div class="row">
-                            <div class="col-md-4">
-                                    <label>Gender</label>
-                                    <select class="form-control" id="gender-view" disabled>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </select> 
-                            </div>
-                        <div class="col-md-4">
-                            <label>Birthday:</label>
-                            <input class="form-control" id="birthday-view" type="text" disabled>
-                        </div>  
+              </div>
+              <div class="row">
+                <div class="col-md-8">
+                    <label>Address:</label>
+                    <input class="form-control" id="address-view" type="text" disabled>
+                </div> 
+                </div>                      
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Gender</label>
+                        <select class="form-control" id="gender-view" disabled>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                         </select> 
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label>Nationality:</label>
-                            <input class="form-control" id="nationality-view" type="text" disabled>
-                        </div>
-                        <div class="col-md-4">
-                            <label>Religion:</label>
-                            <input class="form-control" id="religion-view" type="text" disabled>
-                        </div>
+                    <div class="col-md-4">
+                        <label>Birthday:</label>
+                        <input class="form-control" id="birthday-view" type="text" disabled>
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Nationality:</label>
+                        <input class="form-control" id="nationality-view" type="text" disabled>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                                <label>Birthplace:</label>
-                                <input class="form-control" id="birthplace-view" type="text" disabled>
-                            </div>
-                            <div class="col-md-4">
-                                <label>Civil Status:</label>
-                                <select class="form-control" id="civilstatus-view" disabled>
-                                    <option value="Single">Single</option>
-                                    <option value="Married">Married</option>
-                                    <option value="Widowed">Widowed</option>
-                                    <option value="Complicated">Widowed</option>
-                                </select>
-                            </div>
-                      </div>
+                    <div class="col-md-4">
+                        <label>Religion:</label>
+                        <input class="form-control" id="religion-view" type="text" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Birthplace:</label>
+                        <input class="form-control" id="birthplace-view" type="text" disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Civil Status:</label>
+                        <select class="form-control" id="civilstatus-view" disabled>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Widowed">Widowed</option>
+                            <option value="Complicated">Widowed</option>
+                        </select>
+                    </div>
+                </div>
         </div>
         <div id="requirements" class="tab-pane fade col-md-8">
             <button type="button" class="btn btn-space" data-toggle="modal" data-target="#add-requirement-modal"  data-backdrop="static" data-keyboard="false">Add Requirement</button>
@@ -163,7 +163,6 @@
             </tbody>
             </table>
         </div>
-
          <div id="references" class="tab-pane fade  col-md-8">
             <button type="button" class="btn btn-space" data-toggle="modal" data-target="#add-reference-modal"  data-backdrop="static" data-keyboard="false">Add Employee Reference</button>
             <table class="table table-hover" id="tblReferences">
@@ -180,7 +179,6 @@
             </tbody>
             </table>
         </div>
-
         <div id="attendance" class="tab-pane fade">
               <h3>Menu 3</h3>
               <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
@@ -201,14 +199,14 @@
                     <button type="button" class="btn btn-info pull-right">Post</button>
                     <div class="clearfix"></div>
                     <hr>
-                    <ul class="media-list">
+<%--                    <ul class="media-list">
                         <li class="media">
                             <a href="#" class="pull-left">
                                 <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
                             </a>
                             <div class="media-body">
                                 <span class="text-muted pull-right">
-                                    <small class="text-muted">Date modified</small>
+                                    <small class="text-muted">Date Added</small>
                                 </span>
                                 <strong class="text-success">@MartinoMont</strong>
                                 <p>
@@ -217,11 +215,24 @@
                                 </p>
                             </div>
                         </li>
-                    </ul>
+                    </ul>--%>
+                     <div class="grid-container col-md-12">
+                     <table class="table table-hover" id="tblComments">
+                    <thead>
+                        <tr> 
+                            <th> </th>
+                            <th> </th>
+                            <th></th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyComments">
+                    </tbody>
+                    </table>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -322,7 +333,6 @@
     </div>
 </div>
 <%--End of modal--%>
-
 
 
 <%-- ADD ATTAINMENT MODAL--%>
@@ -575,7 +585,7 @@
         getEmpAtt(id);
         getEmpJobExp(id);
         getEmpRef(id);
-
+        getEmployeeComment(id);
     });
 </script>
 

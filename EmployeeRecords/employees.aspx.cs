@@ -301,5 +301,15 @@ namespace EmployeeRecords
         }
 
 
+        //Get Employee Comments
+        [WebMethod]
+        public static List<EmployeeCommentInfo> getEmployeeCom(int id)
+        {
+            var service = new EmployeeCommentServices();
+
+            var comments = service.getEmpComment(id);
+
+            return comments;
+        }
     }
 }

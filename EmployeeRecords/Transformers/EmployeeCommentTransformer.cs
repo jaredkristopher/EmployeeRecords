@@ -1,23 +1,28 @@
 ﻿using EmployeeRecords.Info;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 namespace EmployeeRecords.Transformers
 {
-    public class CommentTransformer : Transformer<CommentInfo>
+    public class EmployeeCommentTransformer : Transformer<EmployeeCommentInfo>
     {
-        protected override CommentInfo Parse()
+        protected override EmployeeCommentInfo Parse()
         {
-            return new CommentInfo
+            return new EmployeeCommentInfo
             {
                 ID = ToInt(ID),
                 fromEmployeeID = ToInt(fromEmployeeID),
                 toEmployeeID = ToInt(toEmployeeID),
-                FirstName = FirstName.ToString(),
-                MI = MI.ToString(),
-                LastName = LastName.ToString(),
                 Comment = Comment.ToString(),
+                Status = ToInt(Status),
                 DateCreated = DateCreated.ToString(),
                 DateUpdated = DateUpdated.ToString(),
-                DatedDeleted = DatedDeleted.ToString()
+                DatedDeleted = DatedDeleted.ToString(),
+                FirstName = FirstName.ToString(),
+                LastName = LastName.ToString(),
+                MI = MI.ToString()
             };
         }
 
@@ -25,13 +30,14 @@ namespace EmployeeRecords.Transformers
         private object ID { get; set; }
         private object fromEmployeeID { get; set; }
         private object toEmployeeID { get; set; }
-        private object FirstName { get; set; }
-        private object MI { get; set; }
-        private object LastName { get; set; }
         private object Comment { get; set; }
+        private object Status { get; set; }
         private object DateCreated { get; set; }
         private object DateUpdated { get; set; }
         private object DatedDeleted { get; set; }
+        private object FirstName { get; set; }
+        private object LastName { get; set; }
+        private object MI { get; set; }
         #endregion
     }
 }

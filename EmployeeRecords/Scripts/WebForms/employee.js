@@ -1,7 +1,10 @@
 ﻿var id = 0;
-
 $(document).ready(function () {
     get();
+
+    //$('#myModal').modal({ backdrop: 'static', keyboard: false })
+    //$('#edit-modal').modal({ backdrop: 'static', keyboard: false })
+    //$('#view-modal').modal({ backdrop: 'static', keyboard: false })
 });
 
 //Function for getting all employee
@@ -376,7 +379,7 @@ function fnExcelReport() {
     var textRange; var j = 0;
     tab = document.getElementById('tbl'); // id of table
 
-    for (j = 0 ; j < tab.rows.length ; j++) {
+    for (j = 0 ; j < tab.rows.length; j++) {
         tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
         //tab_text=tab_text+"</tr>";
     }
@@ -827,6 +830,34 @@ $(document).on('click', '#update-reference', function (e) {
 
 });
 
+//Get Employee Comments
+function getEmployeeComment(empId) {
+    //id = $(this).data('id');
+    $('#tbodyComments').text('');
+    (new http).post("employees.aspx/getEmployeeCom", {
+        id: empId
+    }).then(function (response) {
+        var items = response.d.map(item => {
+            if (item.Status) {
+                var html = "<tr>" +
+				        "<td>" + "<div class='container'><img class='img-responsive' src=\"Content/img/29-512.png\"/> </div>" + "</td>" +
+                        "<td>" +"<b>"+ item.FirstName + " " + item.MI + " " + item.LastName + ": </b>"+ item.Comment + "</td>" +
+                        "<td>" + "<b> Date Commented: </b>" + item.DateCreated +
+                        "<td>";
+                html += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit editEmpCom\" data-toggle='modal' data-target='#edit-Com-modal'>" +
+                        //"<span class=\"tooltiptext\">Click to modify details</span>" +
+                    "</i>";
+                html += "<i data-id=\"" + item.ID + "\" data-name=\"" + item.FirstName + "'s" + "Comment" + + "\" class=\"fa fa-remove removeEmpCom\">" +
+                   //"<span class=\"tooltiptext\">Click to deactivate</span>" +
+               "</i>";
+                html += "</td>" +
+                "</tr>";
+                $('#tbodyComments').append(html);
+            }
+        });
+    }).run();
+};
+
 
 //Function for retrieving requirement for editing
 $(document).on('click', '.editEmpReq', function () {
@@ -843,7 +874,3 @@ $(document).on('click', '.editEmpReq', function () {
 });
 
 
-
-$('#myModal').modal({ backdrop: 'static', keyboard: false })
-$('#edit-modal').modal({ backdrop: 'static', keyboard: false })
-$('#view-modal').modal({ backdrop: 'static', keyboard: false })
